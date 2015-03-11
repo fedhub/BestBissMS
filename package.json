@@ -1,0 +1,32 @@
+{
+  "name": "package.json",
+  "version": "1.0.0",
+  "description": "Management system BBRMS",
+  "main": "routers.js",
+  "dependencies": {
+    "body-parser": "^1.12.0",
+    "ejs": "^2.3.1",
+    "express": "^4.12.2",
+    "mysql": "^2.5.3",
+    "socket.io": "^1.2.1",
+    "socket.io-client": "^1.2.1",
+    "http": "^0.0.0",
+    "fs": "^0.0.2",
+    "url": "^0.10.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shimonsw/BestBissMS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shimonsw/BestBissMS/issues"
+  },
+  "homepage": "https://github.com/shimonsw/BestBissMS"
+}
