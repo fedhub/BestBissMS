@@ -9,6 +9,12 @@
 	margin-top: 1px;
 }
 
+.main-content{
+	height: 100%;
+	width: 85%;
+	float: left;
+}
+
 .side-bar{
 	width: 15%;
 	height: 100%;
@@ -34,10 +40,3 @@
 		}
 	}
 }
-
-.view-style{
-	height: 100%;
-	width: 85%;
-	float: left;
-}
-

@@ -1,36 +1,23 @@
 ﻿var express    = require("express");
-var io         = require('socket.io').listen(3001);
-var mysql      = require('mysql');
 var path       = require('path');
 var bodyParser = require('body-parser');
 var app        = express();
-
-var MySql_Connection = mysql.createConnection({
-	host     : '127.0.0.1',
-	user     : 'root',
-	port	 : 3306,
-	//password : 'shenkarYoker5',
-	database : 'best_biss'
-});
-
-
-MySql_Connection.connect(function(err){
-	if(!err) {
-		console.log("Database is connected ... \n\n");
-	} else {
-		console.log("Error connecting database ... \n\n");
-	}
-});
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 // use middleware
 app.use(express.static(path.join(__dirname, 'includes')));
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 
 // define routes
 app.use(require('./routers'));
+app.use(require('./mysql'));
+app.use(require('./functions'));
+
+function sayShimon(){
+	console.log("shimon");
+}
 
 // start the server
 
