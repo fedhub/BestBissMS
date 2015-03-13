@@ -15,7 +15,6 @@
     <%- breadcrumbs %>
 
     <section class="main">
-
         <section class="side-bar">
             <nav>
                 <ul>
@@ -25,13 +24,21 @@
         </section>
 
         <section class="main-content">
+
             <% for(var i = 0; i < items.length; i++) { %>
-            <a href="/menu-items&id=<%= items[i].id %>&name=<%= items[i].name %>">
-                <div class="food-type-container">
-                    <p><%= items[i].name %></p>
-                </div>
-            </a>
+            <br><div class="item-container"><%= items[i].details.name %> - <%= items[i].details.description %> - <%= items[i].details.price %>
+                <!--<ul>-->
+                <!--<% for(var j = 0; j < items[i].addition_types.length; j++) { %>-->
+                <!--<li><a href="#"><%= items[i].addition_types[j].details.name %></a>-->
+                <!--<% for(var k = 0; k < items[i].addition_types[j].items.length; k++) { %>-->
+                <!--<%=  items[i].addition_types[j].items[k].details.name %>-->
+                <!--<% } %>-->
+                <!--</li>-->
+                <!--<% } %>-->
+                <!--</ul>-->
+            </div>
             <% } %>
+
         </section>
 
     </section>

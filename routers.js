@@ -8,15 +8,16 @@ router.get('/', function(req, res){
 });
 
 router.get('/menu', function(req, res){
-    //functions.get_menu(req, res);
-    res.render('menu');
-});
-
-router.post('/get-menu',function(req,res){
-
     functions.get_menu(req, res);
+});
+
+router.get('/menu-items&:id&:name', function(req, res){
+
+    functions.get_food_items(req, res);
 
 });
+
+
 
 module.exports = router;
 

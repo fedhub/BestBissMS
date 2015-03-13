@@ -18,6 +18,19 @@ html, body {
   margin: 0 auto;
 }
 
+header {
+  width: 100%;
+  height: 150px;
+  background-color: #97A778;
+  background-image: url("../images/MS_logo.png");
+  background-repeat: no-repeat;
+  background-position: right bottom;
+}
+
+.main {
+  width: 100%;
+}
+
 /*/////////////////////////////////////////////*/
 /* MIXINS */
 /*/////////////////////////////////////////////*/
@@ -33,34 +46,22 @@ html, body {
 /*/////////////////////////////////////////////*/
 /* HEADER */
 /*/////////////////////////////////////////////*/
-header {
-  width: 100%;
-  height: 20%;
-  background-color: #97A778;
-  background-image: url("../images/MS_logo.png");
-  background-repeat: no-repeat;
-  background-position: right bottom;
-}
-
 /*/////////////////////////////////////////////*/
 /* MAIN */
 /*/////////////////////////////////////////////*/
-.main {
-  width: 100%;
-  height: 70%;
+.main, .main-content, .side-bar {
   background-color: #97A778;
-  margin-top: 1px;
 }
 
 .main-content {
-  height: 100%;
+  width: 100%;
   width: 85%;
+  display: table;
   float: left;
 }
 
 .side-bar {
   width: 15%;
-  height: 100%;
   float: right;
 }
 .side-bar ul {
@@ -87,11 +88,6 @@ header {
 /*/////////////////////////////////////////////*/
 /* MENU */
 /*/////////////////////////////////////////////*/
-.menu-container {
-  display: table;
-  margin: 30px auto;
-}
-
 .food-type-container {
   display: table-cell;
   text-align: center;
@@ -111,4 +107,14 @@ header {
 }
 .food-type-container:hover {
   opacity: 0.8;
+}
+
+/*/////////////////////////////////////////////*/
+/* MENU ITEMS */
+/*/////////////////////////////////////////////*/
+.item-container {
+  width: 80%;
+  height: 150px;
+  margin: 0 auto;
+  background-color: #FFF;
 }
