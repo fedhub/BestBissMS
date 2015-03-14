@@ -17,6 +17,14 @@ router.get('/menu-items&:id&:name', function(req, res){
 
 });
 
+router.get('/edit-food-item&:item_id&:item_name&:category_id&:category_name', function(req, res){
+
+    functions.edit_food_item(req, res);
+
+});
+
+
+
 
 
 module.exports = router;

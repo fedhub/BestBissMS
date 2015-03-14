@@ -23,6 +23,44 @@ functions.get_menu = function(req, res){
 
 }
 
+functions.edit_food_item = function(req, res){
+
+    var item_id = req.params.item_id.split("=");
+    item_id = item_id[item_id.length - 1];
+
+    var item_name = req.params.item_name.split("=");
+    item_name = item_name[item_name.length - 1];
+
+    var category_id = req.params.category_id.split("=");
+    category_id = category_id[category_id.length - 1];
+
+    var category_name = req.params.category_name.split("=");
+    category_name = category_name[category_name.length - 1];
+
+    var current_page = "עריכת ";
+    current_page += item_name;
+
+    var breadcrumbs = '<a href="/">דף הבית</a> > <a href="/menu">תפריט</a> > <a href="/menu-items&id='+category_id+'&name='+category_name+'">'+category_name+'</a> > <a href="#">'+current_page+'</a>';
+
+    var food_item = function(rows){
+
+        var title = 'עריכת ';
+        title += item_name;
+
+        res.render('edit-food-item', {
+            //update: update_food_item,
+            title: title,
+            breadcrumbs : breadcrumbs,
+            item: rows
+        });
+
+    }
+
+    var query = "SELECT * FROM `food_items` WHERE id="+item_id+";";
+    runQuery(query, food_item);
+
+}
+
 functions.get_food_items = function(req, res){
 
     var item_id = req.params.id.split("=");
@@ -44,7 +82,6 @@ functions.get_food_items = function(req, res){
     function Item(details){
         this.details = details;
     }
-
 
 
     var food_items_query = "SELECT * FROM `food_items` WHERE food_type_id="+item_id+";";
@@ -71,7 +108,6 @@ functions.get_food_items = function(req, res){
                             }
                         }
 
-
                         for(var j = 0; j < addition_types_id_arr.length; j++){
 
                             for(var k = 0; k < addition_types_res.length; k++) {
@@ -83,7 +119,6 @@ functions.get_food_items = function(req, res){
 
                                         if(addition_items_res[x].addition_type_id == addition_types_res[k].id){
 
-                                            console.log(addition_types_res[k].name +' - '+ addition_items_res[x].name);
                                             var item = new Item(addition_items_res[x]);
                                             items_arr.push(item);
 
@@ -108,7 +143,9 @@ functions.get_food_items = function(req, res){
                     var breadcrumbs = '<a href="/">דף הבית</a> > <a href="/menu">תפריט</a> > <a href="#">' + item_name + '</a>';
 
                     res.render('menu-items', {
+                        is_required_selection: is_required_selection,
                         title: item_name,
+                        id: item_id,
                         breadcrumbs: breadcrumbs,
                         items: food_items_list
                     });
@@ -121,22 +158,44 @@ functions.get_food_items = function(req, res){
 
     });
 
-    /*var food_items = function(rows) {
+}
 
-        var breadcrumbs = '<a href="/">דף הבית</a> > <a href="/menu">תפריט</a> > <a href="#">' + item_name + '</a>';
+/*var update_food_item = function(name, description, price){
 
-        console.log(rows.length);
+    var query = "UPDATE `food_items` SET `name`="+name+" `description`="+description+" `price`="+price+" WHERE id="+item_id+";";
+    runQuery(query, food_item);
 
-        res.render('menu-items', {
-            title: item_name,
-            breadcrumbs: breadcrumbs,
-            items: rows
-        });
+}*/
 
+var is_required_selection = function(selection_type, max_selections){
+
+    var msg = "";
+
+    if(selection_type == 'required' && max_selections > 0){
+        msg = "בחר ";
+        msg += max_selections;
+        msg += " ";
+        msg += "פריטים";
+        return msg;
+    }
+    else if(selection_type == 'required' && max_selections == 0){
+        msg = "בחר לפחות פריט אחד";
+        return msg;
+    }
+    else if(selection_type == 'optional' && max_selections > 0){
+        msg = "בחר עד ";
+        msg += max_selections;
+        msg += " ";
+        msg += "פריטים (אופציונלי)";
+        return msg;
+    }
+    else if(selection_type == 'optional' && max_selections == 0){
+        msg = "אופציונלי";
+        return msg;
     }
 
-    /*var query = "SELECT * FROM `food_items` WHERE food_type_id="+item_id+";";
-    runQuery(query, food_items);*/
+    msg = "אופציונלי";
+    return msg;
 
 }
 
@@ -160,20 +219,3 @@ function runQuery(query, callback){
 
 
 module.exports = functions;
-
-
-/*app.get('/', function(req,res) {
-    var response = 'Hello';
-    fs.readFile('counter.txt','utf-8', function(e,d) {
-        if (e) {
-            console.log(e);
-            res.send(500, 'Something went wrong');
-        }
-        else {
-            console.log(parseInt(d) + 1);
-            fs.writeFile('counter.txt',parseInt(d) + 1);
-            response += '<p id="c">' + ( parseInt(d) + 1 ) + '</p>';
-            res.send(response);
-        }
-    })
-});*/

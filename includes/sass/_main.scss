@@ -2,16 +2,9 @@
 				/* MAIN */
 /*/////////////////////////////////////////////*/
 
-.main, .main-content, .side-bar{
-	background-color: #97A778;
-}
-
-
-
 .main-content{
-	width: 100%;
-	width: 85%;
 	display: table;
+	width: 85%;
 	float: left;
 }
 
@@ -30,9 +23,7 @@
 		vertical-align: middle;
 	}
 	a{
-		font-family: Arial;
 		font-size: 14px;
-		color: $color;
 		text-decoration: none;
 		&:hover{
 			font-weight: bold;

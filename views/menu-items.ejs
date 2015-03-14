@@ -26,22 +26,55 @@
         <section class="main-content">
 
             <% for(var i = 0; i < items.length; i++) { %>
-            <br><div class="item-container"><%= items[i].details.name %> - <%= items[i].details.description %> - <%= items[i].details.price %>
-                <!--<ul>-->
-                <!--<% for(var j = 0; j < items[i].addition_types.length; j++) { %>-->
-                <!--<li><a href="#"><%= items[i].addition_types[j].details.name %></a>-->
-                <!--<% for(var k = 0; k < items[i].addition_types[j].items.length; k++) { %>-->
-                <!--<%=  items[i].addition_types[j].items[k].details.name %>-->
-                <!--<% } %>-->
-                <!--</li>-->
-                <!--<% } %>-->
-                <!--</ul>-->
-            </div>
+            <br>
+            <section class="item-container" id="<%= items[i].details.id %>">
+                <section class="image-container"></section>
+                <section class="info-container">
+                    <section class="title"><p><%= items[i].details.name %></p></section>
+                    <section class="description"><p><%= items[i].details.description %><p></section>
+                </section>
+                <section class="price-container"><p><%= items[i].details.price %> &#8362;</p></section>
+                <section class="edit-menu-item"><a href="/edit-food-item&item_id=<%= items[i].details.id %>&item_name=<%= items[i].details.name %>&category_id=<%= id %>&category_name=<%= title %>"  id="edit">ערוך</a></section>
+            </section>
+
+            <section class="addition-items-container">
+                <% for(var j = 0; j < items[i].addition_types.length; j++) { %>
+                <section class="additions-set-container">
+
+                    <section class="set-title">
+                        <p>
+                            <%= items[i].addition_types[j].details.name %>: <%= is_required_selection(items[i].addition_types[j].details.selection_type, items[i].addition_types[j].details.max_selections) %>
+                        </p>
+                    </section>
+                    <section class="set-items-container">
+
+                        <% for(var k = 0; k < items[i].addition_types[j].items.length; k++) { %>
+                        <section class="set-item">
+                            <section class="header-container">
+                                <section class="info">
+                                    <section class="title"><p><%= items[i].addition_types[j].items[k].details.name %></p></section>
+                                    <section class="description"><p><%= items[i].addition_types[j].items[k].details.description %></p></section>
+                                </section>
+                                <section class="price"><p><%= items[i].addition_types[j].items[k].details.price %> &#8362;</p></section>
+                            </section>
+                            <section class="image-container"></section>
+                            <section class="edit-container"><a href="#">ערוך</a></section>
+                        </section>
+                        <% } %>
+                    </section>
+                </section>
+                <% } %>
+            </section>
             <% } %>
 
         </section>
 
     </section>
+
 </div>
 </body>
 </html>
+
+
+
+
