@@ -23,17 +23,13 @@ router.get('/edit-food-item&:item_id&:item_name&:category_id&:category_name', fu
 
 });
 
-
-
-
+router.post('/edit-food-item',function(req,res){
+    var name = req.body.name;
+    var description = req.body.description;
+    var price = req.body.price;
+    console.log("name = " + name + ", description is "+description);
+    res.end("yes");
+});
 
 module.exports = router;
-
-
-/*router.post('/login',function(req,res){
-    var user_name=req.body.user;
-    var password=req.body.password;
-    console.log("User name = "+user_name+", password is "+password);
-    res.end("yes");
-});*/
 
