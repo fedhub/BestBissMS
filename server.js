@@ -14,7 +14,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(require('./routers'));
 app.use(require('./mysql'));
 app.use(require('./functions'));
-
 function sayShimon(){
 	console.log("shimon");
 }
