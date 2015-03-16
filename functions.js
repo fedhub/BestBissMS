@@ -4,7 +4,27 @@ var mysql      = require('./mysql');
 
 // export functions
 
-functions.get_menu = function(req, res){
+functions.edit_food_item = function(req, res){
+
+    var id = req.params.id;
+    var info = JSON.parse(req.body.data);
+    var name = info.name;
+    var description = info.description;
+    var price = info.price;
+
+    var query = "UPDATE `food_items` SET `name`=\""+name+"\",`description`=\""+description+"\",`price`=\""+price+"\" WHERE `id`="+id+";";
+    mysql.MySql_Connection.query(query, function(err, result) {
+        var message = '';
+        if(!err)
+            message = 'המידע עודכן בהצלחה';
+        else
+            message = 'הייתה בעיה בעדכון המידע, אנא נסה שוב';
+        res.send(message);
+    });
+
+}
+
+functions.get_menu_page = function(req, res){
 
     var menu = function(rows){
 
@@ -23,7 +43,7 @@ functions.get_menu = function(req, res){
 
 }
 
-functions.edit_food_item = function(req, res){
+functions.get_edit_food_item_page = function(req, res){
 
     var item_id = req.params.item_id.split("=");
     item_id = item_id[item_id.length - 1];
@@ -48,7 +68,7 @@ functions.edit_food_item = function(req, res){
         title += item_name;
 
         res.render('edit-food-item', {
-            //update: update_food_item,
+            item_id: item_id,
             title: title,
             breadcrumbs : breadcrumbs,
             item: rows
@@ -61,7 +81,7 @@ functions.edit_food_item = function(req, res){
 
 }
 
-functions.get_food_items = function(req, res){
+functions.get_food_items_page = function(req, res){
 
     var item_id = req.params.id.split("=");
     item_id = item_id[item_id.length - 1];

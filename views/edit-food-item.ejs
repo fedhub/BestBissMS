@@ -25,14 +25,15 @@
 
         <section class="main-content">
 
-            <form action="/edit-food-item" method="post">
+            <form id="<%= item_id %>">
                 <p>שם:</p>
-                <input type="text" name="name" value="<%= item[0].name %>">
+                <textarea name="name" maxlength="200"><%= item[0].name %></textarea>
                 <p>תיאור:</p>
-                <input type="text" name="description" value="<%= item[0].description %>">
+                <textarea name="description" maxlength="200"><%= item[0].description %></textarea>
                 <p>מחיר:</p>
-                <input type="text" name="price" value="<%= item[0].price %>">
-                <input type="submit" value="עדכן שינויים">
+                <textarea name="price" maxlength="200"><%= item[0].price %></textarea>
+                <br><input type="submit" value="עדכן שינויים">
+                <div id="message-panel"></div>
             </form>
 
         </section>
