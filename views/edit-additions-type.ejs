@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>My App</title>
+    <link rel="stylesheet" href="stylesheets/style.css" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript" src="js/javascript.js"></script>
+</head>
+<body>
+<div class="wrapper">
+
+    <header></header>
+    <h1><%= title %></h1>
+    <%- breadcrumbs %>
+
+    <section class="main">
+        <section class="side-bar">
+            <nav>
+                <ul>
+                    <li><a href="/menu">תפריט</a></li>
+                </ul>
+            </nav>
+        </section>
+
+        <section class="main-content">
+
+            <form id="<%= additions_type[0].id %>" class="additions-type-form">
+                <p>שם:</p>
+                <textarea name="name" maxlength="200"><%= additions_type[0].name %></textarea>
+                <p>תיאור:</p>
+                <textarea name="description" maxlength="200"><%= additions_type[0].description %></textarea>
+                <br><br>אופן הבחירה של פריטים מסט זה כרגע הוא:
+                <b><%= selection_options %></b>
+                <br><br>עדכון אופן הבחירה:
+                <br><br>הבחירה מסט זה היא:
+                <select>
+                    <option>חובה</option>
+                    <option>אופציונלי</option>
+                </select>
+                <br><br>הגדר את מספר הפריטים מסט זה, לבחירה על ידי המשתמש:
+                <select>
+                    <% for(var i = 0; i < items_count[0].val; i++) { %>
+                        <option><%= i+1 %></option>
+                    <% } %>
+                    <option>ללא הגבלה</option>
+                </select>
+
+                <br><br><input type="submit" value="עדכן שינויים">
+                <div id="message-panel"></div>
+            </form>
+
+        </section>
+
+    </section>
+
+</div>
+</body>
+</html>

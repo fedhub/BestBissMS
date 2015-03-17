@@ -25,13 +25,19 @@
 
         <section class="main-content">
 
-            <form id="<%= item_id %>" class="food-item-form">
+            <form id="<%= addition_item_id %>" class="addition-item-form">
                 <p>שם:</p>
                 <textarea name="name" maxlength="200"><%= item[0].name %></textarea>
                 <p>תיאור:</p>
                 <textarea name="description" maxlength="200"><%= item[0].description %></textarea>
                 <p>מחיר:</p>
                 <textarea name="price" maxlength="200"><%= item[0].price %></textarea>
+
+                <!--<br><br>-->
+                <!--<% for(var i = 0; i < related_food_items.length; i++) { %>-->
+                    <!--<input type="checkbox"> <%= related_food_items[i].name %><br>-->
+                <!--<% } %>-->
+
                 <br><input type="submit" value="עדכן שינויים">
                 <div id="message-panel"></div>
             </form>

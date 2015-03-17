@@ -1,4 +1,5 @@
 ﻿var express    = require("express");
+var http       = require('http');
 var path       = require('path');
 var bodyParser = require('body-parser');
 var app        = express();
@@ -19,9 +20,13 @@ app.use(require('./functions'));
 
 var port = process.env.PORT || 3000;
 
-app.listen(port, function(){
-	console.log("app ready on port "+port);
+http.createServer(app).listen(port, function(){
+	console.log("app http ready on port "+port);
 });
+
+/*app.listen(port, function(){
+	console.log("app ready on port "+port);
+});*/
 
 
 

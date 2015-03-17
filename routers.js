@@ -23,21 +23,29 @@ router.get('/edit-food-item&:item_id&:item_name&:category_id&:category_name', fu
 
 });
 
+router.get('/edit-addition-item&:category_id&:category_name&:food_item_id&:food_item_name&:additions_type_id&:additions_type_name&:addition_item_id&:addition_item_name', function(req, res){
+
+    functions.get_edit_addition_item_page(req, res);
+
+});
+
+router.get('/edit-additions-type&:category_id&:category_name&:food_item_id&:food_item_name&:additions_type_id&:additions_type_name', function(req, res){
+
+    functions.get_edit_additions_type_page(req, res);
+
+});
+
 router.post('/edit-food-item&:id', function(req, res){
+
     functions.edit_food_item(req, res);
 
 });
 
-/*router.post('/edit-food-item',function(req,res){
-    var name = req.body.name;
-    var description = req.body.description;
-    var price = req.body.price;
-    console.log("name = " + name + ", description is "+description);
-    var msg = "yes";
-    res.render('edit-food-item', {
-        msg: msg
-    });
-});*/
+router.post('/edit-addition-item&:id', function(req, res){
+
+    functions.edit_addition_item(req, res);
+
+});
 
 module.exports = router;
 

@@ -4,6 +4,46 @@ var mysql      = require('./mysql');
 
 // export functions
 
+functions.edit_addition_item = function(req, res){
+
+    var id = req.params.id;
+    var info = JSON.parse(req.body.data);
+    var name = info.name;
+    var description = info.description;
+    var price = info.price;
+
+    var query = "UPDATE `addition_items` SET `name`=\""+name+"\",`description`=\""+description+"\",`price`=\""+price+"\" WHERE `id`="+id+";";
+    mysql.MySql_Connection.query(query, function(err, result) {
+        var message = '';
+        if(!err)
+            message = 'המידע עודכן בהצלחה';
+        else
+            message = 'הייתה בעיה בעדכון המידע, אנא נסה שוב';
+        res.send(message);
+    });
+
+}
+
+functions.edit_addition_item = function(req, res){
+
+    var id = req.params.id;
+    var info = JSON.parse(req.body.data);
+    var name = info.name;
+    var description = info.description;
+    var price = info.price;
+
+    var query = "UPDATE `addition_items` SET `name`=\""+name+"\",`description`=\""+description+"\",`price`=\""+price+"\" WHERE `id`="+id+";";
+    mysql.MySql_Connection.query(query, function(err, result) {
+        var message = '';
+        if(!err)
+            message = 'המידע עודכן בהצלחה';
+        else
+            message = 'הייתה בעיה בעדכון המידע, אנא נסה שוב';
+        res.send(message);
+    });
+
+}
+
 functions.edit_food_item = function(req, res){
 
     var id = req.params.id;
@@ -24,6 +64,61 @@ functions.edit_food_item = function(req, res){
 
 }
 
+functions.get_edit_additions_type_page = function(req, res){
+
+    var category_id = req.params.category_id.split("=");
+    category_id = category_id[category_id.length - 1];
+
+    var category_name = req.params.category_name.split("=");
+    category_name = category_name[category_name.length - 1];
+
+    var food_item_id = req.params.food_item_id.split("=");
+    food_item_id = food_item_id[food_item_id.length - 1];
+
+    var food_item_name = req.params.food_item_name.split("=");
+    food_item_name = food_item_name[food_item_name.length - 1];
+
+    var additions_type_id = req.params.additions_type_id.split("=");
+    additions_type_id = additions_type_id[additions_type_id.length - 1];
+
+    var additions_type_name = req.params.additions_type_name.split("=");
+    additions_type_name = additions_type_name[additions_type_name.length - 1];
+
+    var query = "SELECT * FROM `addition_types` WHERE id="+additions_type_id+";";
+    mysql.MySql_Connection.query(query, function(err, additions_type_res) {
+
+        var query = "SELECT COUNT(id) AS val FROM `addition_items` WHERE addition_type_id="+additions_type_id+";";
+        mysql.MySql_Connection.query(query, function(err, items_count_res) {
+
+            var previous_page = category_name;
+            previous_page += ' - ';
+            previous_page += food_item_name;
+            previous_page += ' - ';
+            previous_page += 'סט תוספות: ';
+            previous_page += additions_type_name;
+
+            var current_page = "עריכת סט תוספות: ";
+            current_page += additions_type_name;
+
+            var title = 'עריכת סט תוספות: ';
+            title += additions_type_name;
+
+            var breadcrumbs = '<a href="/">דף הבית</a> > <a href="/menu">תפריט</a> > <a href="/menu-items&id='+category_id+'&name='+category_name+'">'+previous_page+'</a> > <a href="#">'+current_page+'</a>';
+
+            res.render('edit-additions-type', {
+                title: title,
+                breadcrumbs : breadcrumbs,
+                selection_options: is_required_selection(additions_type_res[0].selection_type, additions_type_res[0].max_selections),
+                additions_type: additions_type_res,
+                items_count: items_count_res
+            });
+
+        });
+
+    });
+
+}
+
 functions.get_menu_page = function(req, res){
 
     var menu = function(rows){
@@ -40,6 +135,68 @@ functions.get_menu_page = function(req, res){
 
     var query = "SELECT * FROM `food_types`;";
     runQuery(query, menu);
+
+}
+
+functions.get_edit_addition_item_page = function(req, res){
+
+    var category_id = req.params.category_id.split("=");
+    category_id = category_id[category_id.length - 1];
+
+    var category_name = req.params.category_name.split("=");
+    category_name = category_name[category_name.length - 1];
+
+    var food_item_id = req.params.food_item_id.split("=");
+    food_item_id = food_item_id[food_item_id.length - 1];
+
+    var food_item_name = req.params.food_item_name.split("=");
+    food_item_name = food_item_name[food_item_name.length - 1];
+
+    var additions_type_id = req.params.additions_type_id.split("=");
+    additions_type_id = additions_type_id[additions_type_id.length - 1];
+
+    var additions_type_name = req.params.additions_type_name.split("=");
+    additions_type_name = additions_type_name[additions_type_name.length - 1];
+
+    var addition_item_id = req.params.addition_item_id.split("=");
+    addition_item_id = addition_item_id[addition_item_id.length - 1];
+
+    var addition_item_name = req.params.addition_item_name.split("=");
+    addition_item_name = addition_item_name[addition_item_name.length - 1];
+
+
+    var previous_page = category_name;
+    previous_page += ' - ';
+    previous_page += food_item_name;
+    previous_page += ' - ';
+    previous_page += additions_type_name;
+
+    var current_page = "עריכת ";
+    current_page += addition_item_name;
+
+    var title = 'עריכת ';
+    title += addition_item_name;
+
+    var breadcrumbs = '<a href="/">דף הבית</a> > <a href="/menu">תפריט</a> > <a href="/menu-items&id='+category_id+'&name='+category_name+'">'+previous_page+'</a> > <a href="#">'+current_page+'</a>';
+
+    var query = "SELECT * FROM `addition_items` WHERE id="+addition_item_id+";";
+    mysql.MySql_Connection.query(query, function(err, addition_item_res) {
+
+        query = "SELECT * FROM `food_items` WHERE `id` IN ";
+        query += "(SELECT `food_item_id` FROM `food_items_additions` WHERE `addition_type_id`="+additions_type_id+")";
+        mysql.MySql_Connection.query(query, function(err, related_food_items_res) {
+
+            res.render('edit-addition-item', {
+                addition_item_id: addition_item_id,
+                title: title,
+                breadcrumbs : breadcrumbs,
+                item: addition_item_res,
+                related_food_items: related_food_items_res
+            });
+
+        });
+
+    });
 
 }
 

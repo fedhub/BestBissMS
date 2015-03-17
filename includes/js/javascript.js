@@ -10,17 +10,33 @@ $(document).ready(function(){
 
         e.preventDefault();
 
-        var info = {
-            name : $('textarea[name=name]').val(),
-            description : $('textarea[name=description]').val(),
-            price : $('textarea[name=price]').val()
+        var class_name = $(this).attr('class');
+        var url = '';
 
+        if(class_name == 'food-item-form'){
+
+            var info = {
+                name : $('.'+class_name+' textarea[name=name]').val(),
+                description : $('.'+class_name+' textarea[name=description]').val(),
+                price : $('.'+class_name+' textarea[name=price]').val()
+            }
+            url = '/edit-food-item&'+$(this).attr('id');
+        }
+
+        if(class_name == 'addition-item-form'){
+
+            var info = {
+                name : $('.'+class_name+' textarea[name=name]').val(),
+                description : $('.'+class_name+' textarea[name=description]').val(),
+                price : $('.'+class_name+' textarea[name=price]').val()
+            }
+            url = '/edit-addition-item&'+$(this).attr('id');
         }
 
         $.ajax({
 
             type: 'POST',
-            url: '/edit-food-item&'+$(this).attr('id'),
+            url: url,
             data : {data : JSON.stringify(info)}
 
         }).done(function(res){

@@ -45,11 +45,12 @@
                         <p>
                             <%= items[i].addition_types[j].details.name %>: <%= is_required_selection(items[i].addition_types[j].details.selection_type, items[i].addition_types[j].details.max_selections) %>
                         </p>
+                        <a href="/edit-additions-type&category_id=<%= id %>&category_name=<%= title %>&food_item_id=<%= items[i].details.id %>&food_item_name=<%= items[i].details.name %>&additions_type_id=<%= items[i].addition_types[j].details.id %>&additions_type_name=<%= items[i].addition_types[j].details.name %>">ערוך</a>
                     </section>
                     <section class="set-items-container">
 
                         <% for(var k = 0; k < items[i].addition_types[j].items.length; k++) { %>
-                        <section class="set-item">
+                        <section class="set-item" id="<%= items[i].addition_types[j].items[k].details.id %>">
                             <section class="header-container">
                                 <section class="info">
                                     <section class="title"><p><%= items[i].addition_types[j].items[k].details.name %></p></section>
@@ -58,7 +59,10 @@
                                 <section class="price"><p><%= items[i].addition_types[j].items[k].details.price %> &#8362;</p></section>
                             </section>
                             <section class="image-container"></section>
-                            <section class="edit-container"><a href="#">ערוך</a></section>
+                            <section class="edit-container">
+                                <a href="/edit-addition-item&category_id=<%= id %>&category_name=<%= title %>&food_item_id=<%= items[i].details.id %>&food_item_name=<%= items[i].details.name %>&additions_type_id=<%= items[i].addition_types[j].details.id %>&additions_type_name=<%= items[i].addition_types[j].details.name %>&addition_item_id=<%= items[i].addition_types[j].items[k].details.id %>&addition_item_name=<%= items[i].addition_types[j].items[k].details.name %>" id="edit">ערוך
+                                </a>
+                            </section>
                         </section>
                         <% } %>
                     </section>
