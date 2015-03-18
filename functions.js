@@ -108,7 +108,7 @@ functions.get_edit_additions_type_page = function(req, res){
             res.render('edit-additions-type', {
                 title: title,
                 breadcrumbs : breadcrumbs,
-                selection_options: is_required_selection(additions_type_res[0].selection_type, additions_type_res[0].max_selections),
+                selection_type: selection_type(additions_type_res[0].selection_type, additions_type_res[0].selections_amount),
                 additions_type: additions_type_res,
                 items_count: items_count_res
             });
@@ -320,7 +320,7 @@ functions.get_food_items_page = function(req, res){
                     var breadcrumbs = '<a href="/">דף הבית</a> > <a href="/menu">תפריט</a> > <a href="#">' + item_name + '</a>';
 
                     res.render('menu-items', {
-                        is_required_selection: is_required_selection,
+                        selection_type: selection_type,
                         title: item_name,
                         id: item_id,
                         breadcrumbs: breadcrumbs,
@@ -344,34 +344,18 @@ functions.get_food_items_page = function(req, res){
 
 }*/
 
-var is_required_selection = function(selection_type, max_selections){
+var selection_type = function(selection_type, selections_amount){
 
-    var msg = "";
+    var msg = '';
 
-    if(selection_type == 'required' && max_selections > 0){
-        msg = "בחר ";
-        msg += max_selections;
-        msg += " ";
-        msg += "פריטים";
-        return msg;
-    }
-    else if(selection_type == 'required' && max_selections == 0){
-        msg = "בחר לפחות פריט אחד";
-        return msg;
-    }
-    else if(selection_type == 'optional' && max_selections > 0){
-        msg = "בחר עד ";
-        msg += max_selections;
-        msg += " ";
-        msg += "פריטים (אופציונלי)";
-        return msg;
-    }
-    else if(selection_type == 'optional' && max_selections == 0){
-        msg = "אופציונלי";
-        return msg;
-    }
+    if(selection_type == 'required_exact')
+        msg = 'בחר בדיוק ';
+    else if(selection_type == 'required_min')
+        msg = 'בחר לפחות ';
+    else if(selection_type == 'optional_max')
+        msg = 'אופציונלי עד ';
 
-    msg = "אופציונלי";
+    msg += selections_amount;
     return msg;
 
 }

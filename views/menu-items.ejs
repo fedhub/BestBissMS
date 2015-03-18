@@ -43,7 +43,7 @@
 
                     <section class="set-title">
                         <p>
-                            <%= items[i].addition_types[j].details.name %>: <%= is_required_selection(items[i].addition_types[j].details.selection_type, items[i].addition_types[j].details.max_selections) %>
+                            <%= items[i].addition_types[j].details.name %>: <%= selection_type(items[i].addition_types[j].details.selection_type, items[i].addition_types[j].details.selections_amount) %>
                         </p>
                         <a href="/edit-additions-type&category_id=<%= id %>&category_name=<%= title %>&food_item_id=<%= items[i].details.id %>&food_item_name=<%= items[i].details.name %>&additions_type_id=<%= items[i].addition_types[j].details.id %>&additions_type_name=<%= items[i].addition_types[j].details.name %>">ערוך</a>
                     </section>

@@ -31,19 +31,17 @@
                 <p>תיאור:</p>
                 <textarea name="description" maxlength="200"><%= additions_type[0].description %></textarea>
                 <br><br>אופן הבחירה של פריטים מסט זה כרגע הוא:
-                <b><%= selection_options %></b>
-                <br><br>עדכון אופן הבחירה:
-                <br><br>הבחירה מסט זה היא:
-                <select>
-                    <option>חובה</option>
-                    <option>אופציונלי</option>
-                </select>
-                <br><br>הגדר את מספר הפריטים מסט זה, לבחירה על ידי המשתמש:
-                <select>
+                <b><%= selection_type %></b>
+                <br><br>ערוך את אופן הבחירה של פריטים מסט זה על ידי המשתמש:
+                <br><br>
+                <input type="radio" name="selection_type_radio">אופציונלי עד
+                <input type="radio" name="selection_type_radio">חובה בדיוק
+                <input type="radio" name="selection_type_radio">חובה לפחות
+                <br><select>
+                    <option>בחר כמות</option>
                     <% for(var i = 0; i < items_count[0].val; i++) { %>
                         <option><%= i+1 %></option>
                     <% } %>
-                    <option>ללא הגבלה</option>
                 </select>
 
                 <br><br><input type="submit" value="עדכן שינויים">
