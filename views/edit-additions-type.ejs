@@ -34,13 +34,12 @@
                 <b><%= selection_type %></b>
                 <br><br>ערוך את אופן הבחירה של פריטים מסט זה על ידי המשתמש:
                 <br><br>
-                <input type="radio" name="selection_type_radio">אופציונלי עד
-                <input type="radio" name="selection_type_radio">חובה בדיוק
-                <input type="radio" name="selection_type_radio">חובה לפחות
-                <br><select>
-                    <option>בחר כמות</option>
+                <input type="radio" value='optional_max' name="selection_type_radio" <%=is_def_radio(additions_type[0].selection_type, 'optional_max')%>>אופציונלי עד
+                <input type="radio" value='required_exact' name="selection_type_radio" <%=is_def_radio(additions_type[0].selection_type, 'required_exact')%>>בחר בדיוק
+                <input type="radio" value='required_min' name="selection_type_radio" <%=is_def_radio(additions_type[0].selection_type, 'required_min')%>>בחר לפחות
+                <br><select name="selector">
                     <% for(var i = 0; i < items_count[0].val; i++) { %>
-                        <option><%= i+1 %></option>
+                        <option <%=is_def_option(additions_type[0].selections_amount, i+1)%>><%= i+1 %></option>
                     <% } %>
                 </select>
 

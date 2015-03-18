@@ -33,6 +33,17 @@ $(document).ready(function(){
             url = '/edit-addition-item&'+$(this).attr('id');
         }
 
+        if(class_name == 'additions-type-form'){
+
+            var info = {
+                name : $('.'+class_name+' textarea[name=name]').val(),
+                description : $('.'+class_name+' textarea[name=description]').val(),
+                radio : $('.'+class_name+' input[type=radio]:checked').attr('value').toString(),
+                option: $('.'+class_name+' select[name=selector]').val()
+            }
+            url = '/edit-additions-type&'+$(this).attr('id');
+        }
+
         $.ajax({
 
             type: 'POST',

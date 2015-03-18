@@ -47,5 +47,11 @@ router.post('/edit-addition-item&:id', function(req, res){
 
 });
 
+router.post('/edit-additions-type&:id', function(req, res){
+
+    functions.edit_additions_type(req, res);
+
+});
+
 module.exports = router;
 

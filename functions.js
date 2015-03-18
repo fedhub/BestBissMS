@@ -4,6 +4,27 @@ var mysql      = require('./mysql');
 
 // export functions
 
+functions.edit_additions_type = function(req, res){
+
+    var id = req.params.id;
+    var info = JSON.parse(req.body.data);
+    var name = info.name;
+    var description = info.description;
+    var selection_type = info.radio;
+    var selections_amount = info.option;
+
+    var query = "UPDATE `addition_types` SET `name`=\""+name+"\",`description`=\""+description+"\",`selection_type`=\""+selection_type+"\",`selections_amount`=\""+selections_amount+"\" WHERE `id`="+id+";";
+    mysql.MySql_Connection.query(query, function(err, result) {
+        var message = '';
+        if(!err)
+            message = 'המידע עודכן בהצלחה';
+        else
+            message = 'הייתה בעיה בעדכון המידע, אנא נסה שוב';
+        res.send(message);
+    });
+
+}
+
 functions.edit_addition_item = function(req, res){
 
     var id = req.params.id;
@@ -110,12 +131,30 @@ functions.get_edit_additions_type_page = function(req, res){
                 breadcrumbs : breadcrumbs,
                 selection_type: selection_type(additions_type_res[0].selection_type, additions_type_res[0].selections_amount),
                 additions_type: additions_type_res,
-                items_count: items_count_res
+                items_count: items_count_res,
+                is_def_radio: is_def_radio,
+                is_def_option: is_def_option
             });
 
         });
 
     });
+
+}
+
+var is_def_radio = function(selection_type, curr){
+
+    if(selection_type == curr)
+        return "checked";
+    return;
+
+}
+
+var is_def_option = function(selection_amount, curr){
+
+    if(selection_amount == curr)
+        return "selected";
+    return;
 
 }
 
