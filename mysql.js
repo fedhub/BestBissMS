@@ -3,10 +3,11 @@ var my_sql     = require('mysql');
 var mysql      = express.Router();
 
 mysql.MySql_Connection = my_sql.createConnection({
-    host     : 'mysql17.000webhost.com',
-    user     : 'a9396256_sw',
-    password : 'shenkarYoker5',
-    database : 'a9396256_best'
+    host     : 'sql3.freemysqlhosting.net',
+    user     : 'sql371239',
+    password : 'aA1!cJ6%',
+    database : 'sql371239',
+    port     : '3306'
 });
 
 //mysql.MySql_Connection = my_sql.createConnection({
@@ -21,7 +22,7 @@ mysql.MySql_Connection.connect(function(err){
     if(!err) {
         console.log("Database is connected ... \n\n");
     } else {
-        console.log("Error connecting database ... \n\n");
+        console.log("Error connecting database ... \n\n"+err);
     }
 });
 
