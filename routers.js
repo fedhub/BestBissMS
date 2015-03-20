@@ -3,6 +3,10 @@ var router     = express.Router();
 var functions  = require('./functions');
 var server     = require('./server');
 
+router.get('/say-hello-cordova', function(req, res){
+    res.send('cordova test succeeded');
+});
+
 router.get('/', function(req, res){
     res.render('index');
 });
