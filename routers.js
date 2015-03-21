@@ -3,8 +3,8 @@ var router     = express.Router();
 var functions  = require('./functions');
 var server     = require('./server');
 
-router.get('/say-hello-cordova', function(req, res){
-    res.send('cordova test succeeded');
+router.get('/get_mobile_logo', function(req, res){
+    functions.get_mobile_logo(req_res);
 });
 
 router.get('/', function(req, res){

@@ -4,6 +4,17 @@ var mysql      = require('./mysql');
 
 // export functions
 
+functions.get_mobile_logo = function(req, res){
+
+    var query = "SELECT * FROM `contents` WHERE `id`=1;";
+    mysql.MySql_Connection.query(query, function(err, logo_path_res) {
+
+        var logo_path = logo_path_res[0].image_path;
+        console.log(logo_path);
+
+    });
+}
+
 functions.edit_additions_type = function(req, res){
 
     var id = req.params.id;
