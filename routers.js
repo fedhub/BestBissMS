@@ -1,7 +1,6 @@
 var express    = require('express');
 var router     = express.Router();
 var functions  = require('./functions');
-var server     = require('./server');
 
 router.get('/', function(req, res){
     res.render('index');
@@ -55,6 +54,16 @@ router.post('/edit-additions-type&:id', function(req, res){
 
     functions.edit_additions_type(req, res);
 
+});
+
+// app-routes
+
+router.post('/get-menu-data', function(req, res){
+    functions.get_menu_data(req, res);
+});
+
+router.post('/get-food-items-data&:id', function(req, res){
+    functions.get_food_items_data(req, res);
 });
 
 module.exports = router;
