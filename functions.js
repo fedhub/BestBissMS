@@ -6,6 +6,8 @@ var mysql      = require('./mysql');
 
 functions.get_mobile_logo = function(req, res){
 
+    console.log('here');
+
     var query = "SELECT * FROM `contents` WHERE `id`=1;";
     mysql.MySql_Connection.query(query, function(err, logo_path_res) {
 
