@@ -12,7 +12,7 @@ functions.get_mobile_logo = function(req, res){
     mysql.MySql_Connection.query(query, function(err, logo_path_res) {
 
         var logo_path = logo_path_res[0].image_path;
-        res.send(hello);
+        res.send(logo_path);
 
     });
 }

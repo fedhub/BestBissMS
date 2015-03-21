@@ -3,12 +3,12 @@ var router     = express.Router();
 var functions  = require('./functions');
 var server     = require('./server');
 
-router.get('/get-mobile-logo', function(req, res){
-    functions.get_mobile_logo(req_res);
-});
-
 router.get('/', function(req, res){
     res.render('index');
+});
+
+router.get('/get-mobile-logo', function(req, res){
+    functions.get_mobile_logo(req, res);
 });
 
 router.get('/menu', function(req, res){
