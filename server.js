@@ -22,8 +22,10 @@ app.use(function(req, res, next) {
 });
 
 app.use(require('./routers'));
+app.use(require('./mobile_routers'));
 app.use(require('./mysql'));
 app.use(require('./functions'));
+app.use(require('./mobile_functions'));
 
 // start the server
 

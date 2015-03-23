@@ -56,15 +56,5 @@ router.post('/edit-additions-type&:id', function(req, res){
 
 });
 
-// app-routes
-
-router.post('/get-menu-data', function(req, res){
-    functions.get_menu_data(req, res);
-});
-
-router.post('/get-food-items-data&:id', function(req, res){
-    functions.get_food_items_data(req, res);
-});
-
 module.exports = router;
 
