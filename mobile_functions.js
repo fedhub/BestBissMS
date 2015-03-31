@@ -100,6 +100,90 @@ mobile_functions.get_food_items_data = function(req, res){
 
 }
 
+mobile_functions.private_user_login = function(req, res){
+
+    var phone_number = req.params.phone_number.split("=");
+    phone_number = phone_number[phone_number.length - 1];
+
+    var query = "SELECT COUNT(id) AS val FROM `private_customers` WHERE phone_number="+phone_number+";";
+    mysql.MySql_Connection.query(query, function(err, result) {
+
+        if(result[0].val > 0) {
+
+            var query = "SELECT * FROM `private_customers` WHERE phone_number=" + phone_number + ";";
+            mysql.MySql_Connection.query(query, function (err, private_user) {
+
+                res.send(private_user[0]);
+
+            });
+
+        }
+        else{
+
+            var query = "INSERT INTO `private_customers`(`phone_number`) VALUES ('"+phone_number+"')"+";";
+            mysql.MySql_Connection.query(query, function (err, result) {
+
+                res.send('user-created');
+
+            });
+
+        }
+
+    });
+
+}
+
+mobile_functions.business_user_login = function(req, res){
+
+    var phone_number = req.params.phone_number.split("=");
+    phone_number = phone_number[phone_number.length - 1];
+
+    var company_code = req.params.company_code.split("=");
+    company_code = company_code[company_code.length - 1];
+
+    var query = "SELECT COUNT(id) AS val FROM `business_customers` WHERE phone_number="+phone_number+";";
+    mysql.MySql_Connection.query(query, function(err, result) {
+
+        if(result[0].val > 0) {
+
+            var query = "SELECT * FROM `business_customers` WHERE phone_number="+phone_number+";";
+            mysql.MySql_Connection.query(query, function (err, business_user) {
+
+                if(business_user[0].company_code != company_code)
+                    res.send('incorrect-company-code')
+                else
+                    res.send(business_user[0]);
+
+            });
+
+        }
+        else{
+
+            res.send('phone-not-exist');
+
+        }
+
+    });
+
+}
+
+mobile_functions.make_order = function(req, res){
+
+    var info = JSON.parse(req.body.data);
+    var my_cart = info.my_cart;
+    var customer_details = info.customer_details;
+    var due_time = info.due_time;
+    var order_type = info.order_type;
+    var payment_method = info.payment_method;
+
+    update_control_panel();
+
+}
+
+function update_control_panel(){
+
+}
+
 
 
 module.exports = mobile_functions;

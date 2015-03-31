@@ -29,7 +29,7 @@ app.use(require('./mobile_functions'));
 
 // start the server
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 3001;
 
 http.createServer(app).listen(port, function(){
 	console.log("app http ready on port "+port);
