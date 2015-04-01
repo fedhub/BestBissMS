@@ -3,13 +3,32 @@
 /*/////////////////////////////////////////////*/
 
 .control-panel-container{
-	width: 100%;
+	width: 95%;
 	height: 100%;
-	background-color: $FFF;
+	margin: $auto;
+	background-color: #FFF;
 }
 
 .order-container{
 	width: 100%;
-	height: 20%;
+	height: 45%;
+	margin-top: 2%;
+	margin-bottom: 2%;
 	background-color: $bg-color;
+	box-shadow: 0px 0px 5px 1px #000;
+	border: 1px solid #B6B6B6;
+}
+
+.order-index{
+	height: 100%;
+	width: 5%;
+	display: table;
+	//float: right;
+	p{
+		display: table-cell;
+		font-size: 90%;
+		color: $txt-color;
+		vertical-align: middle;
+		text-align: center;
+	}
 }

@@ -1,84 +1,347 @@
-/*
-Error: Undefined variable: "$FFF".
-        on line 8 of C:/xampp/htdocs/BestBiss/BestBissMS/includes/sass/_control-panel.scss
-        from line 10 of C:/xampp/htdocs/BestBiss/BestBissMS/includes/sass/style.scss
+hr {
+  height: 1px;
+  width: 95%;
+  margin: 0 auto;
+  background-color: #002E02;
+}
 
-3: @import "mixins";
-4: @import "structure";
-5: @import "header";
-6: @import "main";
-7: @import "menu";
-8: @import "menu-items";
-9: @import "edit-food-item";
-10: @import "control-panel";
+.bold {
+  font-weight: bold;
+}
 
-Backtrace:
-C:/xampp/htdocs/BestBiss/BestBissMS/includes/sass/_control-panel.scss:8
-C:/xampp/htdocs/BestBiss/BestBissMS/includes/sass/style.scss:10
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/script/tree/variable.rb:49:in `_perform'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/script/tree/node.rb:50:in `perform'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/tree/visitors/perform.rb:394:in `visit_prop'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/tree/visitors/base.rb:36:in `visit'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/stack.rb:79:in `block in with_base'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/stack.rb:115:in `with_frame'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/stack.rb:79:in `with_base'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/tree/visitors/perform.rb:158:in `visit'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/tree/visitors/perform.rb:430:in `block (2 levels) in visit_rule'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/tree/visitors/perform.rb:430:in `map'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/tree/visitors/perform.rb:430:in `block in visit_rule'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/tree/visitors/perform.rb:428:in `visit_rule'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/tree/visitors/base.rb:36:in `visit'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/stack.rb:79:in `block in with_base'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/stack.rb:115:in `with_frame'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/stack.rb:79:in `with_base'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/tree/visitors/perform.rb:158:in `visit'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/tree/visitors/perform.rb:325:in `block (2 levels) in visit_import'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/tree/visitors/perform.rb:325:in `map'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/tree/visitors/perform.rb:325:in `block in visit_import'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/stack.rb:88:in `block in with_import'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/stack.rb:115:in `with_frame'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/stack.rb:88:in `with_import'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/tree/visitors/perform.rb:322:in `visit_import'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/tree/visitors/base.rb:36:in `visit'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/stack.rb:79:in `block in with_base'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/stack.rb:115:in `with_frame'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/stack.rb:79:in `with_base'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/tree/visitors/perform.rb:158:in `visit'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/tree/visitors/base.rb:52:in `map'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/tree/visitors/base.rb:52:in `visit_children'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/tree/visitors/perform.rb:167:in `block in visit_children'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/tree/visitors/perform.rb:166:in `visit_children'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/tree/visitors/base.rb:36:in `block in visit'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/tree/visitors/perform.rb:186:in `visit_root'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/tree/visitors/base.rb:36:in `visit'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/tree/visitors/perform.rb:157:in `visit'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/tree/visitors/perform.rb:8:in `visit'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/tree/root_node.rb:36:in `css_tree'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/tree/root_node.rb:20:in `render'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/engine.rb:268:in `render'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/plugin/compiler.rb:492:in `update_stylesheet'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/plugin/compiler.rb:209:in `each'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/sass-3.4.10/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/compass-1.0.3/lib/compass/sass_compiler.rb:40:in `compile!'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/compass-1.0.3/lib/compass/commands/update_project.rb:49:in `perform'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/compass-1.0.3/lib/compass/commands/base.rb:18:in `execute'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/compass-1.0.3/lib/compass/commands/project_base.rb:19:in `execute'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/compass-1.0.3/lib/compass/exec/sub_command_ui.rb:43:in `perform!'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/compass-1.0.3/lib/compass/exec/sub_command_ui.rb:15:in `run!'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/compass-1.0.3/bin/compass:30:in `block in <top (required)>'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/compass-1.0.3/bin/compass:44:in `call'
-C:/Ruby193/lib/ruby/gems/1.9.1/gems/compass-1.0.3/bin/compass:44:in `<top (required)>'
-C:/Ruby193/bin/compass:23:in `load'
-C:/Ruby193/bin/compass:23:in `<main>'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Error: Undefined variable: \"$FFF\".\A         on line 8 of C:/xampp/htdocs/BestBiss/BestBissMS/includes/sass/_control-panel.scss\A         from line 10 of C:/xampp/htdocs/BestBiss/BestBissMS/includes/sass/style.scss\A \A 3: @import \"mixins\";\A 4: @import \"structure\";\A 5: @import \"header\";\A 6: @import \"main\";\A 7: @import \"menu\";\A 8: @import \"menu-items\";\A 9: @import \"edit-food-item\";\A 10: @import \"control-panel\";"; }
+.clear {
+  clear: both;
+}
+
+/*/////////////////////////////////////////////*/
+/* MIXINS */
+/*/////////////////////////////////////////////*/
+/* Screen Sizes */
+/*/////////////////////////////////////////////*/
+/* STRUCTURE */
+/*/////////////////////////////////////////////*/
+html, body {
+  width: 100%;
+  height: 100%;
+  direction: rtl;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial;
+  color: #002E02;
+}
+
+.wrapper {
+  width: 70%;
+  margin: 0 auto;
+  padding-bottom: 50px;
+}
+
+header {
+  height: 150px;
+  background-image: url("../images/MS_logo.png");
+  background-repeat: no-repeat;
+  background-position: right bottom;
+}
+
+.main, .header {
+  width: 100%;
+}
+
+.main {
+  overflow: hidden;
+}
+
+.wrapper, header, .main {
+  background-color: #97A778;
+}
+
+/*/////////////////////////////////////////////*/
+/* HEADER */
+/*/////////////////////////////////////////////*/
+/*/////////////////////////////////////////////*/
+/* MAIN */
+/*/////////////////////////////////////////////*/
+.main-content {
+  display: table;
+  width: 85%;
+  float: left;
+}
+
+.side-bar {
+  width: 15%;
+  float: right;
+}
+.side-bar ul {
+  width: 100%;
+  display: table;
+}
+.side-bar li {
+  width: 100%;
+  list-style-type: none;
+  text-align: center;
+  line-height: 35px;
+  vertical-align: middle;
+}
+.side-bar a {
+  font-size: 14px;
+  text-decoration: none;
+}
+.side-bar a:hover {
+  font-weight: bold;
+}
+
+/*/////////////////////////////////////////////*/
+/* MENU */
+/*/////////////////////////////////////////////*/
+.food-type-container {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  float: right;
+  margin: 1px 1px;
+  width: 200px;
+  height: 200px;
+  background: url("../images/img.png") no-repeat;
+  background-size: contain;
+  opacity: 1;
+}
+.food-type-container p {
+  font-size: 14px;
+}
+.food-type-container:hover {
+  opacity: 0.8;
+}
+
+/*/////////////////////////////////////////////*/
+/* MENU ITEMS */
+/*/////////////////////////////////////////////*/
+.item-container {
+  width: 90%;
+  height: 100px;
+  margin: 0 auto;
+  padding: 5px;
+  background-color: #FFF;
+  cursor: pointer;
+}
+.item-container .image-container {
+  width: 20%;
+  height: 100%;
+  float: right;
+  background-image: url("../images/img.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+}
+.item-container .info-container {
+  display: block;
+  width: 60%;
+  height: 100%;
+  float: right;
+}
+.item-container .title {
+  width: 100%;
+  height: 30%;
+  display: table;
+}
+.item-container .title p {
+  display: table-cell;
+  padding-right: 10px;
+  vertical-align: middle;
+  font-weight: bold;
+}
+.item-container .description {
+  width: 100%;
+  height: 70%;
+  display: table;
+}
+.item-container .description p {
+  display: table-cell;
+  padding-top: 5px;
+  padding-right: 10px;
+}
+.item-container .price-container {
+  width: 10%;
+  height: 100%;
+  float: right;
+  display: table;
+}
+.item-container .price-container p {
+  display: table-cell;
+  text-align: center;
+  color: #8b0000;
+  vertical-align: middle;
+}
+.item-container .edit-menu-item {
+  width: 10%;
+  height: 100%;
+  float: right;
+  display: table;
+}
+.item-container .edit-menu-item a {
+  font-size: 12px;
+  color: #1155cc;
+  font-weight: bold;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.addition-items-container {
+  width: 90%;
+  overflow: hidden;
+  margin: 0 auto;
+  padding: 5px;
+  background-color: #FFF;
+  display: none;
+}
+.addition-items-container .additions-set-container {
+  width: 100%;
+}
+.addition-items-container .additions-set-container .set-title {
+  width: 100%;
+  height: 25px;
+  background-color: #97A778;
+}
+.addition-items-container .additions-set-container .set-title p {
+  line-height: 25px;
+  font-weight: bold;
+  padding-right: 5px;
+  float: right;
+}
+.addition-items-container .additions-set-container .set-title a {
+  line-height: 25px;
+  font-size: 12px;
+  color: #1155cc;
+  font-weight: bold;
+  margin-right: 5px;
+  float: right;
+}
+.addition-items-container .additions-set-container .set-items-container {
+  width: 100%;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.addition-items-container .additions-set-container .set-items-container .set-item {
+  width: 18%;
+  margin-top: 30px;
+  display: inline-block;
+  border: solid 1px #002E02;
+  background-color: #97A778;
+}
+.addition-items-container .additions-set-container .set-items-container .set-item .header-container {
+  width: 100%;
+  height: 50px;
+}
+.addition-items-container .additions-set-container .set-items-container .set-item .header-container .info {
+  width: 80%;
+  height: 100%;
+  float: right;
+}
+.addition-items-container .additions-set-container .set-items-container .set-item .header-container .info .title {
+  width: 100%;
+  height: 30%;
+  display: table;
+}
+.addition-items-container .additions-set-container .set-items-container .set-item .header-container .info .title p {
+  font-size: 12px;
+  text-align: right;
+  padding-right: 5px;
+  font-weight: bold;
+  display: table-cell;
+}
+.addition-items-container .additions-set-container .set-items-container .set-item .header-container .info .description {
+  width: 100%;
+  height: 70%;
+  display: table;
+}
+.addition-items-container .additions-set-container .set-items-container .set-item .header-container .info .description p {
+  font-size: 11px;
+  text-align: right;
+  padding-right: 5px;
+  display: table-cell;
+}
+.addition-items-container .additions-set-container .set-items-container .set-item .header-container .price {
+  width: 20%;
+  height: 100%;
+  float: right;
+  display: table;
+}
+.addition-items-container .additions-set-container .set-items-container .set-item .header-container .price p {
+  font-size: 11px;
+  text-align: center;
+  vertical-align: middle;
+  color: #8b0000;
+  display: table-cell;
+}
+.addition-items-container .additions-set-container .set-items-container .set-item .image-container {
+  width: 100%;
+  height: 130px;
+  margin: 0 auto;
+  background: url("../images/img.png") no-repeat;
+  background-color: #FFF;
+  background-size: contain;
+  background-position: center center;
+}
+.addition-items-container .additions-set-container .set-items-container .set-item .edit-container {
+  width: 100%;
+  height: 50px;
+  display: table;
+}
+.addition-items-container .additions-set-container .set-items-container .set-item .edit-container a {
+  font-size: 12px;
+  color: #1155cc;
+  font-weight: bold;
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/*/////////////////////////////////////////////*/
+/* EDIT-FOOD-ITEM */
+/*/////////////////////////////////////////////*/
+form {
+  margin-top: 50px;
+  margin-right: 150px;
+}
+
+textarea {
+  width: 450px;
+  height: 70px;
+}
+
+/*/////////////////////////////////////////////*/
+/* CONTROL-PANEL */
+/*/////////////////////////////////////////////*/
+.control-panel-container {
+  width: 95%;
+  height: 100%;
+  margin: 0 auto;
+  background-color: #FFF;
+}
+
+.order-container {
+  width: 100%;
+  height: 45%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  background-color: #97A778;
+  box-shadow: 0px 0px 5px 1px #000;
+  border: 1px solid #B6B6B6;
+}
+
+.order-index {
+  height: 100%;
+  width: 5%;
+  display: table;
+}
+.order-index p {
+  display: table-cell;
+  font-size: 90%;
+  color: #002E02;
+  vertical-align: middle;
+  text-align: center;
+}

@@ -1,8 +1,20 @@
 ﻿var express    = require("express");
-var http       = require('http');
+var app        = express();
+var server     = require('http').createServer(app);
+var io         = require('socket.io').listen(server);
 var path       = require('path');
 var bodyParser = require('body-parser');
-var app        = express();
+
+// socket.io
+io.sockets.on('connection', function(socket){
+
+	socket.on('communicate', function(info){
+		var socket_id = socket.id;
+		console.log('socket-id: '+socket_id);
+		io.emit('new-order-arrived', socket_id);
+	});
+
+});
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -27,10 +39,7 @@ app.use(require('./mysql'));
 app.use(require('./functions'));
 app.use(require('./mobile_functions'));
 
-// start the server
-
 var port = process.env.PORT || 3001;
-
-http.createServer(app).listen(port, function(){
+server.listen(port, function(){
 	console.log("app http ready on port "+port);
 });

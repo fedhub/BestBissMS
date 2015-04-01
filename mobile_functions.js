@@ -181,7 +181,8 @@ mobile_functions.make_order = function(req, res){
 }
 
 function update_control_panel(){
-
+    console.log('here');
+    //$('.control-panel-container').append('hello');
 }
 
 
