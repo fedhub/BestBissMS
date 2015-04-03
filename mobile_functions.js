@@ -175,14 +175,21 @@ mobile_functions.make_order = function(req, res){
     var due_time = info.due_time;
     var order_type = info.order_type;
     var payment_method = info.payment_method;
+    var phone_number = customer_details.phone_number;
 
-    update_control_panel();
+    for(var i = 0; i < my_cart.cart_items.length; i++){
+        var food_item_id = my_cart.cart_items[i].item.id;
+        var addition_types = '';
+        for(var j = 0; j < my_cart.cart_items[i].addition_types.length; j++){
+            addition_types += my_cart.cart_items[i].addition_types[j].type.id+',';
+        }
+        addition_types = addition_types.substr(0, addition_types.length-1);
+        var query = "INSERT INTO `last_orders`(`phone_number`, `food_item_id`, `addition_types`) VALUES ('"+phone_number+"','"+food_item_id+"','"+addition_types+"');";
+        mysql.MySql_Connection.query(query, function(err, result) {
+            res.end('last orders updated');
+        });
+    }
 
-}
-
-function update_control_panel(){
-    console.log('here');
-    //$('.control-panel-container').append('hello');
 }
 
 

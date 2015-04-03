@@ -10,8 +10,7 @@ io.sockets.on('connection', function(socket){
 
 	socket.on('communicate', function(info){
 		var socket_id = socket.id;
-		console.log('socket-id: '+socket_id);
-		io.emit('new-order-arrived', socket_id);
+		io.emit('new-order-arrived', info);
 	});
 
 });

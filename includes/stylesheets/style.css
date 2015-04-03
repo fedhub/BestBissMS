@@ -332,16 +332,101 @@ textarea {
   box-shadow: 0px 0px 5px 1px #000;
   border: 1px solid #B6B6B6;
 }
-
-.order-index {
+.order-container .order-index {
   height: 100%;
-  width: 5%;
+  width: 10%;
+  display: table;
+  float: right;
+}
+.order-container .order-index p {
+  display: table-cell;
+  line-height: 100%;
+  font-size: 2500%;
+  color: #002E02;
+}
+.order-container .meal-container {
+  height: 95%;
+  max-width: 20%;
+  padding: 10px;
+  margin-right: 5px;
+  background-color: lightgrey;
+  border-radius: 5px;
+  float: right;
+}
+.order-container .meal-title {
+  font-size: 50px;
+}
+.order-container .meal-additions-container {
+  width: 100%;
+  overflow: hidden;
+}
+.order-container .meal-additions-container .meal-addition-type {
+  float: right;
+  font-size: 30px;
+  font-weight: bold;
+}
+.order-container .meal-additions-container .meal-addition-items {
+  float: right;
+  font-size: 30px;
+}
+
+.order-details-container {
+  width: 20%;
+  height: 100%;
+  background-color: cornsilk;
+  float: left;
+  border-radius: 5px;
+  box-shadow: 0px 0px 5px 1px #000;
+}
+
+.administrative-details-container {
+  width: 100%;
+  height: 10%;
+  margin-top: 2%;
+}
+.administrative-details-container .detail-container {
+  height: 100%;
+  width: 25%;
+  display: inline-block;
+}
+.administrative-details-container .detail-box {
+  height: 100%;
+  width: 90%;
+  margin: auto;
+  text-align: center;
+  box-shadow: 0px 0px 5px 1px #000;
+  border-radius: 5px;
+  background-color: #FFF;
   display: table;
 }
-.order-index p {
+.administrative-details-container .detail-box p {
   display: table-cell;
-  font-size: 90%;
+  text-align: center;
+  vertical-align: middle;
   color: #002E02;
+  font-weight: bold;
+  font-size: 100%;
+}
+
+.customer-details {
+  height: 70%;
+  width: 97%;
+  margin: 10px auto;
+  box-shadow: 0px 0px 5px 1px #000;
+  border-radius: 5px;
+  background-color: #FFF;
+}
+.customer-details .detail {
+  width: 95%;
+  height: 10%;
+  margin: auto;
+  display: table;
+}
+.customer-details .detail p {
+  display: table-cell;
   vertical-align: middle;
   text-align: center;
+  color: #002E02;
+  font-weight: bold;
+  font-size: 100%;
 }
