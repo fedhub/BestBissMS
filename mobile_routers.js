@@ -23,4 +23,12 @@ mobile_router.post('/make-order', function(req, res){
     mobile_functions.make_order(req, res);
 });
 
+mobile_router.post('/check-status', function(req, res){
+    mobile_functions.check_status(req, res);
+});
+
+mobile_router.post('/update-status', function(req, res){
+    mobile_functions.update_status(req, res);
+});
+
 module.exports = mobile_router;

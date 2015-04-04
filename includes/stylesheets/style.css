@@ -430,3 +430,43 @@ textarea {
   font-weight: bold;
   font-size: 100%;
 }
+
+.update-status-container {
+  height: 10%;
+  width: 100%;
+}
+.update-status-container .status-bar {
+  width: 95%;
+  height: 80%;
+  margin: 20px auto;
+  box-shadow: 0px 0px 5px 1px #000;
+  border-radius: 100px;
+  background-color: #FFF;
+}
+.update-status-container .status-level {
+  height: 100%;
+  width: 25%;
+  display: table;
+  float: right;
+  background-color: #FFF;
+  cursor: pointer;
+}
+.update-status-container .status-level p {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  font-weight: bold;
+  font-size: 90%;
+  color: #002E02;
+}
+.update-status-container .first-status {
+  border-bottom-right-radius: 100px;
+  border-top-right-radius: 100px;
+}
+.update-status-container .last-status {
+  border-bottom-left-radius: 100px;
+  border-top-left-radius: 100px;
+}
+.update-status-container .status-level-selected {
+  background-color: green;
+}

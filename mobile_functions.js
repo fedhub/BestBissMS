@@ -181,16 +181,52 @@ mobile_functions.make_order = function(req, res){
         var food_item_id = my_cart.cart_items[i].item.id;
         var addition_types = '';
         for(var j = 0; j < my_cart.cart_items[i].addition_types.length; j++){
-            addition_types += my_cart.cart_items[i].addition_types[j].type.id+',';
+            addition_types += my_cart.cart_items[i].addition_types[j].type.id+'[';
+            for(var k = 0; k < my_cart.cart_items[i].addition_types[j].items.length; k++){
+                addition_types += my_cart.cart_items[i].addition_types[j].items[k].id+',';
+            }
+            addition_types = addition_types.substr(0, addition_types.length-1);
+            addition_types += '],';
         }
         addition_types = addition_types.substr(0, addition_types.length-1);
         var query = "INSERT INTO `last_orders`(`phone_number`, `food_item_id`, `addition_types`) VALUES ('"+phone_number+"','"+food_item_id+"','"+addition_types+"');";
-        mysql.MySql_Connection.query(query, function(err, result) {
-            res.end('last orders updated');
-        });
+        mysql.MySql_Connection.query(query);
     }
 
+    var query = "INSERT INTO `pending_orders`(`phone_number`, `due_time`, `order_type`) VALUES ('"+phone_number+"','"+due_time+"','"+order_type+"');";
+    mysql.MySql_Connection.query(query);
+
+    res.end('updated');
+
 }
+
+mobile_functions.check_status = function(req, res){
+
+    var info = JSON.parse(req.body.data);
+    var phone_number = info.phone_number;
+
+    var query = "SELECT * FROM `pending_orders` WHERE phone_number='"+phone_number+"';";
+    mysql.MySql_Connection.query(query, function(err, order_status){
+        res.send(order_status[0]);
+    });
+
+}
+
+mobile_functions.update_status = function(req, res){
+
+    var info = JSON.parse(req.body.data);
+    var status_level = info.status_level;
+    var phone_number = info.phone_number;
+
+    var query = "UPDATE `pending_orders` SET `status_level`="+status_level+" WHERE `phone_number`='"+phone_number+"';";
+    mysql.MySql_Connection.query(query, function(err, resuslt){
+        res.send('done');
+    });
+
+}
+
+
+
 
 
 

@@ -20,6 +20,7 @@ function new_order_arrived(data){
     var info = JSON.parse(data);
     var my_cart = info.my_cart;
     var customer_details = info.customer_details;
+    var phone_number = info.customer_details.phone_number;
     var due_time = info.due_time;
     var order_type = info.order_type;
     var payment_method = info.payment_method;
@@ -111,10 +112,53 @@ function new_order_arrived(data){
     }
 
 
-
     order_details_container.append(administrative_details_container).append(personal_details);
 
-    order_container.append(order_details_container);
+    var level_3 = '';
+    var level_4 = '';
+    if(order_type == 'delivery') {
+        level_3 = 'אריזה';
+        level_4 = 'בדרך אלייך';
+    }
+    if(order_type == 'sit') {
+        level_3 = 'האוכל מוכן';
+        level_4 = 'מחכה בצלחת';
+    }
+    if(order_type == 'take-away') {
+        level_3 = 'אריזה';
+        level_4 = 'מחכה לאיסוף';
+    }
 
+    var update_status_container = $('<section>', {class: 'update-status-container'});
+    var status_bar = $('<section>', {class: 'status-bar'});
+    var first_level = $('<section>', {class: 'status-level first-status status-level-selected'}).append($('<p>', {text: 'ההזמנה התקבלה'})).click({status_level: 0, phone_number: phone_number}, update_status_event);
+    var second_level = $('<section>', {class: 'status-level'}).append($('<p>', {text: 'בהכנה'})).click({status_level: 1, phone_number: phone_number}, update_status_event);
+    var third_level = $('<section>', {class: 'status-level'}).append($('<p>', {text: level_3})).click({status_level: 2, phone_number: phone_number}, update_status_event);
+    var fourth_level = $('<section>', {class: 'status-level last-status'}).append($('<p>', {text: level_4})).click({status_level: 3, phone_number: phone_number}, update_status_event);
+
+    status_bar.append(first_level).append(second_level).append(third_level).append(fourth_level);
+    update_status_container.append(status_bar);
+
+    order_details_container.append(update_status_container);
+
+    order_container.append(order_details_container);
     $cp_container.append(order_container);
 }
+
+function update_status_event(e){
+
+    var url = 'http://'+base_url+'/update-status';
+    var info = {
+        phone_number: e.data.phone_number,
+        status_level: e.data.status_level
+    };
+    $.ajax({
+        type: 'POST',
+        url: url,
+        data: {data : JSON.stringify(info)}
+    }).done(function(res){
+        $('.status-level:eq('+e.data.status_level+')').toggleClass('status-level-selected');
+    });
+
+}
+
