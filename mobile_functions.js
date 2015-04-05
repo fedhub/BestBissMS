@@ -104,26 +104,36 @@ mobile_functions.private_user_login = function(req, res){
 
     var phone_number = req.params.phone_number.split("=");
     phone_number = phone_number[phone_number.length - 1];
+    var query = '';
+    var query2 = '';
 
-    var query = "SELECT COUNT(id) AS val FROM `private_customers` WHERE phone_number="+phone_number+";";
+    query = "SELECT COUNT(id) AS val FROM `private_customers` WHERE phone_number='"+phone_number+"';";
     mysql.MySql_Connection.query(query, function(err, result) {
 
         if(result[0].val > 0) {
 
-            var query = "SELECT * FROM `private_customers` WHERE phone_number=" + phone_number + ";";
+            query2 = "SELECT * FROM `private_customers` WHERE phone_number='"+phone_number+"';";
             mysql.MySql_Connection.query(query, function (err, private_user) {
 
-                res.send(private_user[0]);
+                if(!err)
+                    res.send(private_user[0]);
+                else{
+                    console.log('IN : private_user_login \n' + err);
+                }
 
             });
 
         }
         else{
 
-            var query = "INSERT INTO `private_customers`(`phone_number`) VALUES ('"+phone_number+"')"+";";
+            query2 = "INSERT INTO `private_customers`(`phone_number`) VALUES ('"+phone_number+"');";
             mysql.MySql_Connection.query(query, function (err, result) {
 
-                res.send('user-created');
+                if(!err)
+                    res.send('user-created');
+                else{
+                    console.log('IN : private_user_login \n' + err);
+                }
 
             });
 
@@ -141,26 +151,36 @@ mobile_functions.business_user_login = function(req, res){
     var company_code = req.params.company_code.split("=");
     company_code = company_code[company_code.length - 1];
 
-    var query = "SELECT COUNT(id) AS val FROM `business_customers` WHERE phone_number="+phone_number+";";
+    var query = "SELECT COUNT(id) AS val FROM `business_customers` WHERE phone_number='"+phone_number+"';";
     mysql.MySql_Connection.query(query, function(err, result) {
 
-        if(result[0].val > 0) {
+        if(!err) {
+            if (result[0].val > 0) {
 
-            var query = "SELECT * FROM `business_customers` WHERE phone_number="+phone_number+";";
-            mysql.MySql_Connection.query(query, function (err, business_user) {
+                var query = "SELECT * FROM `business_customers` WHERE phone_number='" + phone_number + "';";
+                mysql.MySql_Connection.query(query, function (err, business_user) {
 
-                if(business_user[0].company_code != company_code)
-                    res.send('incorrect-company-code')
-                else
-                    res.send(business_user[0]);
+                    if(!err) {
+                        if (business_user[0].company_code != company_code)
+                            res.send('incorrect-company-code')
+                        else
+                            res.send(business_user[0]);
+                    }
+                    else{
+                        console.log('IN : business_user_login\n' + err);
+                    }
 
-            });
+                });
 
+            }
+            else {
+
+                res.send('phone-not-exist');
+
+            }
         }
         else{
-
-            res.send('phone-not-exist');
-
+            console.log('IN : business_user_login\n' + err);
         }
 
     });
@@ -175,7 +195,22 @@ mobile_functions.make_order = function(req, res){
     var due_time = info.due_time;
     var order_type = info.order_type;
     var payment_method = info.payment_method;
+    var customer_type = info.customer_type;
     var phone_number = customer_details.phone_number;
+    var query;
+    var new_budget = 0;
+
+    if(order_type == 'delivery') {
+        if(customer_type == 'business') {
+            new_budget = customer_details.budget - my_cart.total_price;
+        }
+        update_customer_details_in_db(customer_type, phone_number, customer_details, new_budget);
+    }
+    if(order_type != 'delivery' && customer_type == 'business'){
+        new_budget = customer_details.budget-my_cart.total_price;
+        query = "UPDATE `business_customers` SET `budget`="+new_budget+" WHERE `phone_number`='"+phone_number+"';";
+        mysql.MySql_Connection.query(query);
+    }
 
     for(var i = 0; i < my_cart.cart_items.length; i++){
         var food_item_id = my_cart.cart_items[i].item.id;
@@ -189,14 +224,43 @@ mobile_functions.make_order = function(req, res){
             addition_types += '],';
         }
         addition_types = addition_types.substr(0, addition_types.length-1);
-        var query = "INSERT INTO `last_orders`(`phone_number`, `food_item_id`, `addition_types`) VALUES ('"+phone_number+"','"+food_item_id+"','"+addition_types+"');";
+        query = "INSERT INTO `last_orders`(`phone_number`, `food_item_id`, `addition_types`) VALUES ('"+phone_number+"','"+food_item_id+"','"+addition_types+"');";
         mysql.MySql_Connection.query(query);
     }
 
-    var query = "INSERT INTO `pending_orders`(`phone_number`, `due_time`, `order_type`) VALUES ('"+phone_number+"','"+due_time+"','"+order_type+"');";
+    query = "INSERT INTO `pending_orders`(`phone_number`, `due_time`, `order_type`) VALUES ('"+phone_number+"','"+due_time+"','"+order_type+"');";
     mysql.MySql_Connection.query(query);
 
     res.end('updated');
+
+}
+
+function update_customer_details_in_db(customer_type, phone_number, customer_details, new_budget){
+
+    var table = '';
+    if(customer_type == 'private') table = 'private_customers';
+    if(customer_type == 'business') table = 'business_customers';
+
+    var query =
+        "UPDATE `"+table+"` SET "+
+        "`first_name`='"+customer_details.first_name+"',"+
+        "`last_name`='"+customer_details.last_name+"',"+
+        "`street`='"+customer_details.street+"',"+
+        "`house_number`='"+customer_details.house_number+"',"+
+        "`floor`='"+customer_details.floor+"',"+
+        "`enter`='"+customer_details.enter+"',"+
+        "`comments`='"+customer_details.comments+"'";
+    if(customer_type == 'business')
+        query += ",`budget`="+new_budget;
+
+    query +=" WHERE `phone_number`='"+phone_number+"';";
+    mysql.MySql_Connection.query(query, function(err, response){
+        if(!err)
+            return;
+        else{
+            console.log('IN : update_customer_details_in_db \n' + err);
+        }
+    });
 
 }
 
@@ -205,9 +269,13 @@ mobile_functions.check_status = function(req, res){
     var info = JSON.parse(req.body.data);
     var phone_number = info.phone_number;
 
-    var query = "SELECT * FROM `pending_orders` WHERE phone_number='"+phone_number+"';";
+    var query = "SELECT * FROM `pending_orders` WHERE `phone_number`='"+phone_number+"';";
     mysql.MySql_Connection.query(query, function(err, order_status){
-        res.send(order_status[0]);
+        if(!err)
+            res.send(order_status[0]);
+        else{
+            console.log('IN : check_status \n' + err);
+        }
     });
 
 }
@@ -220,14 +288,13 @@ mobile_functions.update_status = function(req, res){
 
     var query = "UPDATE `pending_orders` SET `status_level`="+status_level+" WHERE `phone_number`='"+phone_number+"';";
     mysql.MySql_Connection.query(query, function(err, resuslt){
-        res.send('done');
+        if(!err)
+            res.send('done');
+        else{
+            console.log('IN : update_status \n' + err);
+        }
     });
 
 }
-
-
-
-
-
 
 module.exports = mobile_functions;
