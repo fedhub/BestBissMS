@@ -1,7 +1,8 @@
-var base_url = 'localhost:3001';
+var base_url = 'http://best-biss.azurewebsites.net';
+//var base_url = 'http://localhost:3001';
 var index = 0;
 
-var socket = io.connect('http://'+base_url,{
+var socket = io.connect(base_url,{
     'reconnect': true,
     'reconnection delay': 2000,
     'max reconnection attempts': 10
@@ -147,7 +148,7 @@ function new_order_arrived(data){
 
 function update_status_event(e){
 
-    var url = 'http://'+base_url+'/update-status';
+    var url = base_url+'/update-status';
     var info = {
         phone_number: e.data.phone_number,
         status_level: e.data.status_level
