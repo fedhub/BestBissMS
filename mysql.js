@@ -2,13 +2,12 @@ var express    = require('express');
 var my_sql     = require('mysql');
 var mysql      = express.Router();
 
-var port2 = process.env.PORT || 3001;
 mysql.MySql_Connection = my_sql.createConnection({
     host     : 'mysql17.000webhost.com',
     user     : 'a9396256_sw',
     //password : 'shenkarYoker5',
-    database : 'a9396256_best',
-    port     : port2
+    database : 'a9396256_best'
+    //port     : port2
 });
 
 /*mysql.MySql_Connection = my_sql.createConnection({
