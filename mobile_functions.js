@@ -113,7 +113,7 @@ mobile_functions.private_user_login = function(req, res){
         if(result[0].val > 0) {
 
             query2 = "SELECT * FROM `private_customers` WHERE phone_number='"+phone_number+"';";
-            mysql.MySql_Connection.query(query, function (err, private_user) {
+            mysql.MySql_Connection.query(query2, function (err, private_user) {
 
                 if(!err)
                     res.send(private_user[0]);
@@ -127,7 +127,7 @@ mobile_functions.private_user_login = function(req, res){
         else{
 
             query2 = "INSERT INTO `private_customers`(`phone_number`) VALUES ('"+phone_number+"');";
-            mysql.MySql_Connection.query(query, function (err, result) {
+            mysql.MySql_Connection.query(query2, function (err, result) {
 
                 if(!err)
                     res.send('user-created');
