@@ -6,8 +6,8 @@ mysql.MySql_Connection = my_sql.createConnection({
     host     : 'mysql17.000webhost.com',
     user     : 'a9396256_sw',
     //password : '',
-    database : 'a9396256_best',
-    port     : '3306'
+    database : 'a9396256_best'
+    //port     : '3306'
 });
 
 /*mysql.MySql_Connection = my_sql.createConnection({
