@@ -5,9 +5,9 @@ var mysql      = express.Router();
 mysql.MySql_Connection = my_sql.createConnection({
     host     : 'mysql17.000webhost.com',
     user     : 'a9396256_sw',
-    password : 'shenkarYoker5',
-    database : 'a9396256_best',
-    port     : '3306'
+    //password : 'shenkarYoker5',
+    database : 'a9396256_best'
+    //port     : '3306'
 });
 
 /*mysql.MySql_Connection = my_sql.createConnection({
