@@ -4,9 +4,10 @@ var server     = require('http').createServer(app);
 var io         = require('socket.io').listen(server);
 var path       = require('path');
 var bodyParser = require('body-parser');
+var app_exports  = express.Router();
 
 // socket.io
-io.sockets.on('connection', function(socket){
+app_exports.io.sockets.on('connection', function(socket){
 
 	socket.on('communicate', function(info){
 		var socket_id = socket.id;
@@ -42,3 +43,5 @@ var port = process.env.PORT || 3001;
 server.listen(port, function(){
 	console.log("app http ready on port "+port);
 });
+
+module.exports = app_exports;
