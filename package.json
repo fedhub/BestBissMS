@@ -5,14 +5,14 @@
   "main": "functions.js",
   "dependencies": {
     "body-parser": "^1.12.0",
+    "ejs": "^2.3.1",
     "express": "^4.12.2",
+    "fs": "^0.0.2",
+    "http": "^0.0.0",
     "mysql": "^2.5.3",
     "socket.io": "^1.2.1",
-    "ejs": "^2.3.1",
-    "http": "^0.0.0",
     "socket.io-client": "^1.2.1",
-    "url": "^0.10.1",
-    "fs": "^0.0.2"
+    "url": "^0.10.1"
   },
   "devDependencies": {},
   "scripts": {
