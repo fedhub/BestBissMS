@@ -470,3 +470,6 @@ textarea {
 .update-status-container .status-level-selected {
   background-color: green;
 }
+.update-status-container .status-level-selected p {
+  color: #FFF;
+}
