@@ -47,5 +47,3 @@ var port = process.env.PORT || 3000;
 server.listen(port, function(){
 	console.log("app http ready on port "+port);
 });
-
-module.exports = app_exports;
