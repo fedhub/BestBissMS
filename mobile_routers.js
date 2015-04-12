@@ -1,8 +1,6 @@
 var express           = require('express');
 var mobile_router     = express.Router();
 var mobile_functions  = require('./mobile_functions');
-var server  = require('./server');
-
 
 mobile_router.post('/get-menu-data', function(req, res){
     mobile_functions.get_menu_data(req, res);
@@ -30,11 +28,6 @@ mobile_router.post('/check-status', function(req, res){
 
 mobile_router.post('/update-status', function(req, res){
     mobile_functions.update_status(req, res);
-});
-
-mobile_router.post('/credit-success-page', function(req, res){
-    console.log('heeere');
-    server.io.socket.emit('credit-success');
 });
 
 module.exports = mobile_router;

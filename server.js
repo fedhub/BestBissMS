@@ -4,10 +4,9 @@ var server     = require('http').createServer(app);
 var io         = require('socket.io').listen(server);
 var path       = require('path');
 var bodyParser = require('body-parser');
-var app_exports  = express.Router();
 
 // socket.io
-app_exports.io.sockets.on('connection', function(socket){
+io.sockets.on('connection', function(socket){
 
 	socket.on('communicate', function(info){
 		var socket_id = socket.id;
@@ -38,6 +37,11 @@ app.use(require('./mobile_routers'));
 app.use(require('./mysql'));
 app.use(require('./functions'));
 app.use(require('./mobile_functions'));
+
+app.post('/credit-success-page', function(req, res){
+	console.log('heeere');
+	io.emit('credit-success');
+});
 
 var port = process.env.PORT || 3001;
 server.listen(port, function(){
