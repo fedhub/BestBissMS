@@ -5,9 +5,29 @@ var io         = require('socket.io').listen(server);
 var path       = require('path');
 var bodyParser = require('body-parser');
 
-io.configure(function () {
-    io.set("transports", ["xhr-polling"]);
-    io.set("polling duration", 10);
+io.use(function(socket, next) {
+    var handshake = socket.request;
+
+    if (!handshake) {
+        return next(new Error('[[error:not-authorized]]'));
+    }
+
+    cookieParser(handshake, {}, function(err) {
+        if (err) {
+            return next(err);
+        }
+
+        var sessionID = handshake.signedCookies['express.sid'];
+
+        db.sessionStore.get(sessionID, function(err, sessionData) {
+            if (err) {
+                return next(err);
+            }
+            console.log(sessionData);
+
+            next();
+        });
+    });
 });
 
 // socket.io
