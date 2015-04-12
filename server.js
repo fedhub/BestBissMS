@@ -39,11 +39,6 @@ app.use(require('./mysql'));
 app.use(require('./functions'));
 app.use(require('./mobile_functions'));
 
-app.get('/credit-success-page', function(req, res){
-	console.log('heeere');
-	io.emit('credit-success');
-});
-
 var port = process.env.PORT || 3000;
 server.listen(port, function(){
 	console.log("app http ready on port "+port);

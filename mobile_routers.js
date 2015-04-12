@@ -30,4 +30,8 @@ mobile_router.post('/update-status', function(req, res){
     mobile_functions.update_status(req, res);
 });
 
+mobile_router.post('/credit-success-page', function(req, res){
+   res.render('index');
+});
+
 module.exports = mobile_router;
