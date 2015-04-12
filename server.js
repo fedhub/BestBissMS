@@ -5,11 +5,6 @@ var io         = require('socket.io').listen(server);
 var path       = require('path');
 var bodyParser = require('body-parser');
 
-io.use(function () {
-    io.set("transports", ["xhr-polling"]);
-    io.set("polling duration", 10);
-});
-
 // socket.io
 io.sockets.on('connection', function(socket){
 
