@@ -16,6 +16,7 @@ io.sockets.on('connection', function(socket){
 });
 
 app.set('view engine', 'ejs');
+app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 // use middleware
