@@ -299,9 +299,13 @@ mobile_functions.update_status = function(req, res){
 
 mobile_functions.credit_payment_page = function(req, res){
 
-    var info = JSON.parse(req.body.data);
-    var cardcom_url = info.cardcom_url;
-    var socket_id = info.socket_id;
+    var cardcom_url = req.params.cardcom_url.split("=");
+    cardcom_url = cardcom_url[cardcom_url.length - 1];
+
+    var socket_id = req.params.socket_id.split("=");
+    socket_id = socket_id[socket_id.length - 1];
+
+
     console.log('in page');
 
     res.render('credit-payment', {
