@@ -302,6 +302,7 @@ mobile_functions.credit_payment_page = function(req, res){
     var info = JSON.parse(req.body.data);
     var cardcom_url = info.cardcom_url;
     var socket_id = info.socket_id;
+    console.log('in page');
 
     res.render('credit-payment', {
         cardcom_url: cardcom_url,
