@@ -41,6 +41,6 @@ app.use(require('./functions'));
 app.use(require('./mobile_functions'));
 
 var port = process.env.PORT || 3000;
-server.listen(port, 'localhost', function(){
+server.listen(port, function(){
 	console.log("app http ready on port "+port);
 });
