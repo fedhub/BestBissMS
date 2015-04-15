@@ -1,12 +1,7 @@
 ﻿var express    = require("express");
 var app        = express();
-var fs         = require('fs');
-var options = {
-    key: fs.readFileSync('sslcert/www_best-biss_com.key'),
-    cert: fs.readFileSync('sslcert/www_best-biss_com.crt')
-};
-var server     = require('https').createServer(options, app);
-var io         = require('socket.io').listen(server);
+var server     = require('http').createServer(app);
+var io         = require('socket.io').listen(app);
 var path       = require('path');
 var bodyParser = require('body-parser');
 
@@ -46,6 +41,6 @@ app.use(require('./functions'));
 app.use(require('./mobile_functions'));
 
 var port = process.env.PORT || 3000;
-server.listen(port, function(){
+server.listen(port, 'localhost', function(){
 	console.log("app http ready on port "+port);
 });
