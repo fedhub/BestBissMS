@@ -5,7 +5,6 @@ var io         = require('socket.io').listen(server);
 var path       = require('path');
 var bodyParser = require('body-parser');
 
-
 // socket.io
 io.sockets.on('connection', function(socket){
 
@@ -16,7 +15,6 @@ io.sockets.on('connection', function(socket){
 
 });
 
-app.set('view engine', 'ejs');
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 

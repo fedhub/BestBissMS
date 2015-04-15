@@ -297,4 +297,17 @@ mobile_functions.update_status = function(req, res){
 
 }
 
+mobile_functions.credit_payment_page = function(req, res){
+
+    var info = JSON.parse(req.body.data);
+    var cardcom_url = info.cardcom_url;
+    var socket_id = info.socket_id;
+
+    res.render('credit-payment', {
+        cardcom_url: cardcom_url,
+        socket_id: socket_id
+    });
+
+}
+
 module.exports = mobile_functions;

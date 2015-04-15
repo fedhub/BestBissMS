@@ -34,4 +34,8 @@ mobile_router.post('/credit-success-page', function(req, res){
    res.render('index');
 });
 
+mobile_router.post('/credit-payment-page', function(req, res){
+    mobile_functions.credit_payment_page(req, res);
+});
+
 module.exports = mobile_router;
