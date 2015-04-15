@@ -35,7 +35,18 @@ mobile_router.post('/credit-success-page', function(req, res){
 });
 
 mobile_router.get('/credit-payment-page&:cardcom_url&:socket_id', function(req, res){
-    mobile_functions.credit_payment_page(req, res);
+
+    var cardcom_url = req.params.cardcom_url.split("=");
+    cardcom_url = cardcom_url[cardcom_url.length - 1];
+
+    var socket_id = req.params.socket_id.split("=");
+    socket_id = socket_id[socket_id.length - 1];
+
+    res.render('credit-payment', {
+        cardcom_url: cardcom_url,
+        socket_id: socket_id
+    });
+
 });
 
 module.exports = mobile_router;
