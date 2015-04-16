@@ -4,6 +4,34 @@ var mysql      = require('./mysql');
 
 // export functions
 
+
+// 1 MENU PAGE
+functions.get_menu_page = function(req, res){
+
+    var breadcrumbs = '<a href="/">דף הבית</a> > <a href="#">תפריט</a>';
+    var query = "SELECT * FROM `food_types`;";
+
+    mysql.getConnection(function(err, conn){
+        if(!err){
+            conn.query(query, function(err, result){
+                if(!err){
+                    res.render('menu', {
+                        title: 'תפריט',
+                        breadcrumbs : breadcrumbs,
+                        items: result
+                    });
+                }
+                else{console.log("There was an error with MySQL Query: " + query + ' ' + err);}
+            });
+            conn.release();
+        }
+        else{console.log(err);}
+    });
+
+}
+
+
+// EDIT ADDITIONS TYPE
 functions.edit_additions_type = function(req, res){
 
     var id = req.params.id;
@@ -14,13 +42,21 @@ functions.edit_additions_type = function(req, res){
     var selections_amount = info.option;
 
     var query = "UPDATE `addition_types` SET `name`=\""+name+"\",`description`=\""+description+"\",`selection_type`=\""+selection_type+"\",`selections_amount`=\""+selections_amount+"\" WHERE `id`="+id+";";
-    mysql.MySql_Connection.query(query, function(err, result) {
-        var message = '';
-        if(!err)
-            message = 'המידע עודכן בהצלחה';
-        else
-            message = 'הייתה בעיה בעדכון המידע, אנא נסה שוב';
-        res.send(message);
+
+    mysql.getConnection(function(err, conn){
+        if(!err){
+            conn.query(query, function(err, result){
+                var message = '';
+                if(!err){message = 'המידע עודכן בהצלחה';}
+                else{
+                    console.log("There was an error with MySQL Query: " + query + ' ' + err);
+                    message = 'הייתה בעיה בעדכון המידע, אנא נסה שוב';
+                }
+                res.send(message);
+            });
+            conn.release();
+        }
+        else{console.log(err);}
     });
 
 }
@@ -155,25 +191,6 @@ var is_def_option = function(selection_amount, curr){
     if(selection_amount == curr)
         return "selected";
     return;
-
-}
-
-functions.get_menu_page = function(req, res){
-
-    var menu = function(rows){
-
-        var breadcrumbs = '<a href="/">דף הבית</a> > <a href="#">תפריט</a>';
-
-        res.render('menu', {
-            title: 'תפריט',
-            breadcrumbs : breadcrumbs,
-            items: rows
-        });
-
-    }
-
-    var query = "SELECT * FROM `food_types`;";
-    runQuery(query, menu);
 
 }
 
@@ -391,24 +408,5 @@ var selection_type = function(selection_type, selections_amount){
     return msg;
 
 }
-
-// private functions
-
-function runQuery(query, callback){
-
-    mysql.MySql_Connection.query(query, function(err, rows, fields){
-        if(!err){
-            callback(rows);
-        }
-        else{
-            console.log('');
-            console.log("There was an error with MySQL Query: " + query);
-            console.log('');
-            console.log(err);
-        }
-    });
-
-}
-
 
 module.exports = functions;
