@@ -4,13 +4,17 @@
     <meta charset="utf-8" />
     <title>Credit-Payment</title>
     <link rel="stylesheet" href="stylesheets/style.css" />
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
     <script type="text/javascript" src="js/javascript.js"></script>
+    <script type="text/javascript" src="js/credit-payment.js"></script>
 </head>
 <body>
 <section class="iframe-container">
 
-    hello
+    <%= cardcom_url %>
+    <br>
+    <p id="redirect"><%= socket_id %></p>
 
 </section>
 </body>

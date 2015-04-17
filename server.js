@@ -5,21 +5,6 @@ var io         = require('socket.io').listen(server);
 var path       = require('path');
 var bodyParser = require('body-parser');
 
-/*socket.on('ping', function(data){
-    socket.emit('pong', {beat: 1});
-});
-console.log('connection created');
-
-socket.on('pong', function(data){
-    console.log("Pong received from client");
-});
-
-function sendHeartbeat(){
-    setTimeout(sendHeartbeat, 8000);
-    socket.emit('ping', { beat : 1 });
-}
-setTimeout(sendHeartbeat, 5000);*/
-
 // socket.io
 io.sockets.on('connection', function(socket){
 
