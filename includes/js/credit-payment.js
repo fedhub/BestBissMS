@@ -6,8 +6,7 @@ $(document).ready(function(){
     get_logo();
 
     $('.back-button').click(function(){
-        parent.location.href = "https://www.best-biss.com/payment-success";
-        history.back(-3);
+        parent.history.back();
     });
 
 });
