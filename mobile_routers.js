@@ -30,17 +30,17 @@ mobile_router.post('/update-status', function(req, res){
     mobile_functions.update_status(req, res);
 });
 
-mobile_router.get('/credit-payment', function(req, res){
+mobile_router.get('/credit-payment&:id', function(req, res){
 
-   /* var cardcom_url = req.params.url;
+    var cardcom_url = req.params.id;
     cardcom_url = decodeURIComponent(cardcom_url);
-    cardcom_url = cardcom_url.replace('url=','');*/
+    cardcom_url = cardcom_url.replace('id=','');
 
-    res.render('credit-payment');
+    //res.render('credit-payment');
 
-   /* res.render('credit-payment', {
+    res.render('credit-payment', {
         cardcom_url: cardcom_url
-    });*/
+    });
 
 });
 
