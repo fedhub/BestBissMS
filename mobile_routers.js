@@ -48,19 +48,4 @@ mobile_router.get('/payment-success', function(req, res){
 
 });
 
-/*mobile_router.post('/credit-payment', function(req, res){
-
-    var info = JSON.parse(req.body.data);
-    var cardcom_url = decodeURIComponent(info.cardcom_url);
-    var socket_id = decodeURIComponent(info.socket_id);
-
-    req.method = 'get';
-
-   res.redirect('credit-payment-page');/*, {
-        cardcom_url: cardcom_url,
-        socket_id: socket_id
-    });*/
-
-//});
-
 module.exports = mobile_router;
