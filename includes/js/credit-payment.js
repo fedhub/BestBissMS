@@ -5,10 +5,8 @@ $(document).ready(function(){
 
     get_logo();
 
-    parent.location.href = "https://www.best-biss.com/payment-success";
-
     $('.back-button').click(function(){
-        history.back(-3);
+        parent.location.href = history.back(-3);
     });
 
 });
