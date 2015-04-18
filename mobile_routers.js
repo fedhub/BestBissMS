@@ -32,7 +32,7 @@ mobile_router.post('/update-status', function(req, res){
 
 mobile_router.get('/credit-payment&:terminalnumber&:lowprofilecode', function(req, res){
 
-    var terminalnumber = req.params.terminal_number;
+    var terminalnumber = req.params.terminalnumber;
     terminalnumber = decodeURIComponent(terminalnumber);
     terminalnumber = terminalnumber.replace('terminalnumber=','');
 
