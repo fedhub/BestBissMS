@@ -6,7 +6,7 @@ $(document).ready(function(){
     get_logo();
 
     $('.back-button').click(function(){
-        history.back(-4);
+        parent.location = parent.history.back();
     });
 
 });
