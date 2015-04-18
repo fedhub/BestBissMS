@@ -5,10 +5,6 @@ $(document).ready(function(){
 
     get_logo();
 
-    $('.back-button').click(function(){
-        parent.history.back();
-    });
-
 });
 
 function get_logo(){
