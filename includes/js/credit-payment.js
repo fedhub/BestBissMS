@@ -7,6 +7,7 @@ $(document).ready(function(){
 
     $('.back-button').click(function(){
         parent.location.href = "https://www.best-biss.com/payment-success";
+        history.back(-3);
     });
 
 });
