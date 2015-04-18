@@ -30,10 +30,6 @@ mobile_router.post('/update-status', function(req, res){
     mobile_functions.update_status(req, res);
 });
 
-mobile_router.post('/credit-success-page', function(req, res){
-   res.render('index');
-});
-
 mobile_router.get('/credit-payment&:url&:id', function(req, res){
 
     var cardcom_url = req.params.url;
