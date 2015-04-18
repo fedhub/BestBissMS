@@ -30,14 +30,17 @@ mobile_router.post('/update-status', function(req, res){
     mobile_functions.update_status(req, res);
 });
 
-mobile_router.get('/credit-payment?cardcom_url', function(req, res){
+mobile_router.get('/credit-payment&:terminalnumber&:lowprofilecode', function(req, res){
 
-    var cardcom_url = req.params.cardcom_url;
-    cardcom_url = decodeURIComponent(cardcom_url);
-    cardcom_url = cardcom_url.replace('id=','');
-    cardcom_url = "https://secure.cardcom.co.il/external/LowProfileClearing3.aspx?"+cardcom_url;
+    var terminalnumber = req.params.terminal_number;
+    terminalnumber = decodeURIComponent(terminalnumber);
+    terminalnumber = terminalnumber.replace('terminalnumber=','');
 
-    //res.render('credit-payment');
+    var lowprofilecode = req.params.lowprofilecode;
+    lowprofilecode = decodeURIComponent(lowprofilecode);
+    lowprofilecode = lowprofilecode.replace('lowprofilecode=','');
+
+    var cardcom_url = "https://secure.cardcom.co.il/external/LowProfileClearing3.aspx?terminalnumber="+terminalnumber+"&lowprofilecode="+lowprofilecode;
 
     res.render('credit-payment', {
         cardcom_url: cardcom_url
