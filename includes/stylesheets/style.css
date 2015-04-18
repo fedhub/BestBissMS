@@ -474,8 +474,29 @@ textarea {
   color: #FFF;
 }
 
-.iframe-container {
-  width: 90%;
-  height: 70%;
-  margin: 100p auto;
+.payment-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.payment-header {
+  height: 7.5%;
+  width: 100%;
+  background-color: #FFF;
+}
+
+.payment-logo {
+  width: 40%;
+  height: 100%;
+}
+
+.payment-content {
+  height: 92.5%;
+  width: 100%;
+  background-color: grey;
+}
+
+iframe {
+  height: 100%;
+  width: 100%;
 }

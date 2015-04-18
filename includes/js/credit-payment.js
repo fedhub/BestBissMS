@@ -1,21 +1,22 @@
-//var base_url = 'https://www.best-biss.com';
-var base_url = 'http://localhost:3000';
-
-var socket = io.connect(base_url,{
-    'reconnect': true,
-    'reconnection delay': 2000,
-    'max reconnection attempts': 10
-});
+var base_url = 'https://www.best-biss.com';
+//var base_url = 'http://localhost:3000';
 
 $(document).ready(function(){
 
-    $('p#redirect').click(function(){
+    get_logo();
 
-        var socket_id = $('p#redirect').text();
-        console.log('client id: '+ socket_id);
-
-        window.history.back();
-
+    $('.back-button').click(function(){
+        history.back(-2);
     });
 
 });
+
+function get_logo(){
+
+    $('.payment-logo').css({
+        'background': 'url("'+base_url+'/images/mobile_logo.png") no-repeat',
+        'background-size': 'contain',
+        'background-position': 'center center'
+    });
+
+}

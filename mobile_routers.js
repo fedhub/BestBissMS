@@ -51,6 +51,12 @@ mobile_router.get('/credit-payment&:url&:id', function(req, res){
 
 });
 
+mobile_router.get('/payment-success', function(req, res){
+
+    res.render('payment-success');
+
+});
+
 /*mobile_router.post('/credit-payment', function(req, res){
 
     var info = JSON.parse(req.body.data);
